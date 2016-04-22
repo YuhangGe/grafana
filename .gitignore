@@ -7,6 +7,8 @@ awsconfig
 /emails/dist
 /public_gen
 /public/vendor/npm
+/public/css
+/public/index.html
 /tmp
 vendor/phantomjs/phantomjs
 
