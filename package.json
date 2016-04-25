@@ -13,9 +13,10 @@
     "gen-css": "",
     "gen-html": "node ./scripts/gen-html.js --watch",
     "gen-html:build": "node ./scripts/gen-html.js --build",
+    "ts": "node ./scripts/typescripts.js --watch",
     "sass": "node ./scripts/gen-css.js --watch",
     "sass:build": "node ./scripts/gen-css.js --build",
-    "start": "concurrently 'npm run gen-html' 'npm run sass' 'npm run server'",
+    "start": "concurrently 'npm run ts' 'npm run gen-html' 'npm run sass' 'npm run server'",
     "server": "s-server ./scripts/dev-server.js --liveload",
     "copy:npm": "node ./scripts/copy-npm.js",
     "postinstall": "npm run copy:npm"
