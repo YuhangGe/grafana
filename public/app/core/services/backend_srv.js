@@ -42,8 +42,11 @@ function (angular, _, coreModule, config) {
         }
 
         if (err.status === 401) {
-          location.href = '/login';
-          throw data;
+          var user = window.grafanaBootData.user;
+          if (!user || !user.isSignedIn) {
+            location.href = '/login';
+            throw data;
+          }
         }
 
         if (err.status === 422) {
