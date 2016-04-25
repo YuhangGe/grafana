@@ -1,6 +1,6 @@
 System.config({
   defaultJSExtenions: true,
-  baseURL: 'public',
+  baseURL: '',
   paths: {
     'remarkable': 'vendor/npm/remarkable/dist/remarkable.js',
     'tether': 'vendor/npm/tether/dist/js/tether.js',

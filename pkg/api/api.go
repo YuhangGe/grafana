@@ -89,6 +89,9 @@ func Register(r *macaron.Macaron) {
 	// api renew session based on remember cookie
 	r.Get("/api/login/ping", quota("session"), LoginApiPing)
 
+  // 获取 boot data
+  r.Get("/api/boot_data", wrap(GetBootData))
+
 	// authed api
 	r.Group("/api", func() {
 

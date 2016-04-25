@@ -40,7 +40,7 @@ func GetDataSources(c *middleware.Context) {
 		if plugin, exists := plugins.DataSources[ds.Type]; exists {
 			dsItem.TypeLogoUrl = plugin.Info.Logos.Small
 		} else {
-			dsItem.TypeLogoUrl = "public/img/icn-datasource.svg"
+			dsItem.TypeLogoUrl = "img/icn-datasource.svg"
 		}
 
 		result = append(result, dsItem)

@@ -41,6 +41,11 @@ function (angular, _, coreModule, config) {
           data = { message: data };
         }
 
+        if (err.status === 401) {
+          location.href = '/login';
+          throw data;
+        }
+
         if (err.status === 422) {
           alertSrv.set("Validation failed", data.message, "warning", 4000);
           throw data;

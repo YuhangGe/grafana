@@ -7,36 +7,107 @@ const CWD = process.cwd();
 const fs = require('fs');
 const livereload = require('./live-reload.js');
 
+const IndexRoutes = [
+  '/login',
+  /^\/invite\/.+/,
+  '/profile/password',
+  '/profile',
+  "/admin/stats",
+  '/datasources',
+  '/datasources/new',
+  '/org/users',
+  '/org/apikeys',
+  '/dashboard/import',
+  '/admin/users',
+  '/admin/settings',
+  '/admin/users/create',
+  /^\/admin\/users\/edit\/.+/,
+  '/admin/orgs',
+  /^\/admin\/orgs\/edit\/.+/,
+  '/plugins',
+  /^\/plugins\/[^\/]+\/edit/,
+  /^\/plugins\/[^\/]+\/page\/[^\/]+/,
+  /^\/dashboard\/.+/,
+  '/dashboard/snapshots',
+  /^\/dashboard\/snapshots\/.+/,
+  '/user/password/reset',
+  '/user/password/send-reset-email',
+  '/signup',
+  '/playlists',
+  /^\/playlists\/.+/,
+  /^\/dashboard-solo\/.+/,
+];
+
+function isIndexRoute(url) {
+  if (url[url.length - 1] === '/') {
+    url = url.substring(0, url.length - 1);
+  }
+  return IndexRoutes.some(r => {
+    return r instanceof RegExp ? r.test(url) : r.indexOf(url) === 0;
+  });
+}
+
+let ready = false;
+let readyResolve = null;
+let readyPromise = new Promise(resolve => {
+  readyResolve = resolve;
+});
+function onReady() {
+  ready = true;
+  readyResolve();
+}
+
 module.exports = function (app, server, port) {
   if (process.argv[3] === '--liveload') {
-    livereload.init(app, server, port);
+    livereload.init(app, server, port, onReady);
+  } else {
+    onReady();
+  }
+
+  app.use(function *(next) {
+    if (!ready) {
+      // console.log('Dev-Server not ready, waiting...');
+      yield readyPromise;
+    }
+    yield next;
+  });
+
+  if (process.argv[3] === '--build') {
+
+  } else {
+
+    app.use(function *(next) {
+      if (typeof this.query.__delay !== 'undefined') {
+        yield new Promise(res => setTimeout(res, Number(this.query.__delay || 1500)));
+      }
+      if (this.method === 'GET' && isIndexRoute(this.url)) {
+        this.url = '/index.html';
+      }
+      if (/^\/public\//.test(this.url)) {
+        this.url = this.url.replace(/^\/public\//, '/');
+      }
+      yield next;
+    });
+    app.use(serve(path.join(CWD, 'public')));
+    app.use(serve(path.join(CWD, '_ts')));
   }
 
   app.use(function *(next) {
     // 接口代理
-    if (!/^\/api\//.test(this.url)) {
+    if (this.body) {
       yield next;
       return;
     }
+    let remoteUrl = 'http://127.0.0.1:3000' + this.url;
+    console.log('Proxy ==> ' + remoteUrl);
     let res = this.res;
-    this.req.pipe(request('http://127.0.0.1:9090' + this.url).on('error',  function (err) {
+    this.req.pipe(request(remoteUrl, {
+      followRedirect: false
+    }).on('error',  function (err) {
       console.error(err);
       res.statusCode = 404;
       res.end('Backend Connection Error.\n' + err.message);
     })).pipe(res);
     this.response = false;
   });
-
-  if (process.argv[3] === '--build') {
-    
-  } else {
-    app.use(function *(next) {
-      if (typeof this.query.__delay !== 'undefined') {
-        yield new Promise(res => setTimeout(res, Number(this.query.__delay || 1500)));
-      }
-      yield next;
-    });
-    app.use(serve(path.join(CWD, 'public')));
-  }
-
 };

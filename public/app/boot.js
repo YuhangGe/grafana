@@ -6,12 +6,17 @@
 
   var http = new XMLHttpRequest();
 
-  http.open('POST', '/api/v1/boot_data', true);
+  http.open('GET', '/api/boot_data', true);
   http.onreadystatechange = function () {
     if (http.readyState === 4) {
       if (http.status === 200) {
         try {
-          window.grafanaBootData = JSON.parse(http.responseText);
+          var bootData = JSON.parse(http.responseText);
+          window.grafanaBootData = {
+            user: bootData.User,
+            settings: bootData.Settings,
+            mainNavLinks: bootData.MainNavLinks
+          };
           loadTheme();
         } catch(ex) {
           console.log(ex);

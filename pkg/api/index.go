@@ -44,7 +44,7 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	}
 
 	if setting.DisableGravatar {
-		data.User.GravatarUrl = setting.AppSubUrl + "/public/img/transparent.png"
+		data.User.GravatarUrl = setting.AppSubUrl + "/img/transparent.png"
 	}
 
 	if len(data.User.Name) == 0 {
@@ -152,6 +152,14 @@ func Index(c *middleware.Context) {
 	} else {
 		c.HTML(200, "index", data)
 	}
+}
+
+func GetBootData(c *middleware.Context) Response {
+  if data, err := setIndexViewData(c); err != nil {
+    return ApiError(500, "Failed to get settings", err)
+  } else {
+    return Json(200, data)
+  }
 }
 
 func NotFoundHandler(c *middleware.Context) {
