@@ -6,9 +6,9 @@ const fs = require('fs');
 const glob = require('glob');
 const CWD = process.cwd();
 const sass = require('node-sass');
-
+const CleanCSS = require('clean-css');
 const DIR = path.join(CWD, 'public');
-const DIST = path.join(DIR, 'css');
+const DIST = path.join(CWD, process.argv[2] !== '--build' ? 'public' : 'dist', 'css');
 _util.mkdirSync(DIST); // make dir if not exists
 
 const info = {
@@ -30,6 +30,14 @@ function genCss(DEBUG) {
   compile('fonts', DEBUG);
   compile('grafana.dark', DEBUG);
   compile('grafana.light', DEBUG);
+  if (!DEBUG) {
+    glob.sync(path.join(DIR, 'vendor', 'css', '*.css')).map(cssFile => {
+      var name = path.basename(cssFile, '.css');
+      let source = fs.readFileSync(cssFile).toString();
+      var output = new CleanCSS().minify(source).styles;
+      fs.writeFileSync(path.join(DIST, name + '.min.css'), output);
+    });
+  }
 }
 
 function compile(name, DEBUG) {
@@ -47,7 +55,7 @@ function compile(name, DEBUG) {
     if (err) {
       console.error(err);
     } else {
-      fs.writeFileSync(DEBUG ? path.join(DIR, 'css', name + '.css') : path.join(CWD, 'build', name + '.min.css'), result.css.toString());
+      fs.writeFileSync(path.join(DIST, name + (DEBUG ? '' : '.min') + '.css'), result.css.toString());
       if (DEBUG) {
         var map = result.map.toString().replace(/\.\.\/public\/sass\//g, '../sass/');
         fs.writeFileSync(path.join(DIR, 'css', name + '.css.map'), map);

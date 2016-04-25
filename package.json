@@ -14,12 +14,17 @@
     "gen-html": "node ./scripts/gen-html.js --watch",
     "gen-html:build": "node ./scripts/gen-html.js --build",
     "ts": "node ./scripts/typescripts.js --watch",
+    "js:build": "node ./scripts/build-js.js",
+    "prejs:build": "cp -rf ./public/app ./public/vendor ./public/test ./dist",
+    "dpostjs:build": "rm -rf ./dist/app ./dist/test",
     "sass": "node ./scripts/gen-css.js --watch",
     "sass:build": "node ./scripts/gen-css.js --build",
     "start": "concurrently 'npm run ts' 'npm run gen-html' 'npm run sass' 'npm run server'",
     "server": "s-server ./scripts/dev-server.js --liveload",
     "copy:npm": "node ./scripts/copy-npm.js",
-    "postinstall": "npm run copy:npm"
+    "copy:build": "cp -rf ./public/img ./public/fonts ./public/dashboards ./dist",
+    "postinstall": "npm run copy:npm",
+    "build": "rm -rf ./dist && mkdir ./dist && concurrently 'npm run copy:build' 'npn run gen-html:build' 'npm run js:build' 'npm run sass:build'"
   },
   "devDependencies": {
     "zone.js": "^0.6.6",
@@ -27,13 +32,16 @@
     "concurrently": "^2.0.0",
     "typescript": "^1.8.10",
     "node-sass": "^3.5.3",
-    "systemjs-builder": "^0.15.13",
+    "systemjs-builder": "^0.15.15",
     "sinon": "1.16.1",
     "colors": "^1.1.2",
     "s-server": "^0.2.0",
     "koa-static": "^2.0.0",
     "request": "^2.72.0",
-    "websocket": "^1.0.22"
+    "websocket": "^1.0.22",
+    "clean-css": "^3.4.12",
+    "ng-annotate": "^1.2.1",
+    "uglify-js": "^2.6.2"
   },
   "dependencies": {
     "eventemitter3": "^1.2.0",

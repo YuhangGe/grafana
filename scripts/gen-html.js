@@ -3,9 +3,11 @@
 require('colors');
 const path = require('path');
 const fs = require('fs');
+const _util = require('./_util.js');
 const glob = require('glob');
 const CWD = process.cwd();
-const VIEW_DIR = path.join(CWD, 'public', 'views');
+const DIR = path.join(CWD, 'public');
+const VIEW_DIR = path.join(DIR, 'views');
 
 function genHtml(DEBUG) {
   let cnt = fs.readFileSync(path.join(VIEW_DIR, 'index.htm')).toString();
@@ -13,7 +15,7 @@ function genHtml(DEBUG) {
     return DEBUG ? m1 : m2;
   });
 
-  let dist = path.resolve(CWD, DEBUG ? 'public' : 'build');
+  let dist = path.resolve(CWD, DEBUG ? 'public' : 'dist');
   fs.writeFileSync(path.join(dist, 'index.html'), cnt);
 
   if (DEBUG) {

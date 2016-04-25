@@ -44,7 +44,7 @@
       document.body.removeChild(document.getElementById('splash'));
       bootGrafana();
     };
-    $style.setAttribute('href', 'css/grafana.' + (window.grafanaBootData.user.LightTheme ? 'light' : 'dark') + (__DEBUG ? '' : '.min') + '.css');
+    $style.setAttribute('href', '/css/grafana.' + (window.grafanaBootData.user.lightTheme ? 'light' : 'dark') + (__DEBUG ? '' : '.min') + '.css');
     document.getElementsByTagName('head')[0].appendChild($style);
     $style.onerror = bootError;
   }
