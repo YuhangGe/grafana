@@ -12,13 +12,14 @@ const DIST = path.join(CWD, 'dist');
 const ngAnnotate = require('ng-annotate');
 // const execSync = require('child_process').execSync;
 const APP_DIR = path.join(DIST, 'app');
+const prefix = 'public/';
 
 let tplCnt = `define('app/core/partials', ['app/core/core_module'], function(coreModule) {
   coreModule.default.run(['$templateCache', function($templateCache) {
   ${glob.sync(path.join(APP_DIR, '**/*.html')).map(htmlFile => {
     let cnt = fs.readFileSync(htmlFile).toString();
     let name = htmlFile.substring(DIST.length + 1);
-    return `$templateCache.put("${name}", "${_util.escapeHtml(cnt)}");`
+    return `$templateCache.put("${prefix}${name}", "${_util.escapeHtml(cnt)}");`
   }).join('\n')}
   }]);
 });`;
@@ -118,14 +119,17 @@ function runSystemJS() {
 }
 
 function concatBoot() {
-  let bootCnt = fs.readFileSync(path.join(APP_DIR, 'boot.js')).toString();
-  bootCnt = bootCnt.replace(/\b\s*var\s+__DEBUG\s+=\s+true\b/, 'var __DEBUG = false');
-  let bundleCnt = fs.readFileSync(path.join(DIST, 'app/app_bundle.js')).toString() + '\n' + bootCnt;
-  fs.writeFileSync(path.join(DIST, 'app/app_bundle.js'), bundleCnt);
+  let cnt = fs.readFileSync(path.join(APP_DIR, 'system.conf.js')).toString()
+    + '\n'
+    + fs.readFileSync(path.join(DIST, 'app/app_bundle.js')).toString()
+    + '\n'
+    + fs.readFileSync(path.join(APP_DIR, 'boot.js'))
+      .toString()
+      .replace(/\b\s*var\s+__DEBUG\s+=\s+true\b/, 'var __DEBUG = false');
   let result;
   console.log('Starting uglifyjs...');
   try {
-    result = UglifyJS.minify(bundleCnt, {
+    result = UglifyJS.minify(cnt, {
       fromString: true,
       mangle: true,
       compress: {
@@ -139,12 +143,18 @@ function concatBoot() {
     // console.error(ex.stack);
     console.log(`UglifyJS error ${ex.message}`);
     console.log(`Please check line ${ex.line}, col ${ex.col} of ./dist/app/app_bundle.js`);
-    fs.writeFileSync(path.join(DIST, '.js'), cnt);
+    fs.writeFileSync(path.join(DIST, 'app/app_bundle.js'), cnt);
     return;
   }
+
+  cnt = '';
+  ['vendor/npm/es6-shim/es6-shim.min.js', 'vendor/npm/systemjs/dist/system.js'].forEach(vendorFile => {
+    cnt += fs.readFileSync(path.join(DIST, vendorFile)).toString() + '\n';
+  });
+  cnt += result.code;
   _util.mkdirSync(path.join(DIST, 'js'));
-  fs.writeFileSync(path.join(DIST, 'js/boot.min.js'), result.code);
-  console.log('Complete.');
+  fs.writeFileSync(path.join(DIST, 'js/boot.min.js'), cnt);
+  console.log('Complete build.');
 }
 
 function emitFile(fileName) {

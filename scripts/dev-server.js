@@ -72,22 +72,22 @@ module.exports = function (app, server, port) {
     yield next;
   });
 
+  app.use(function *(next) {
+    if (typeof this.query.__delay !== 'undefined') {
+      yield new Promise(res => setTimeout(res, Number(this.query.__delay || 1500)));
+    }
+    if (this.method === 'GET' && isIndexRoute(this.url)) {
+      this.url = '/index.html';
+    }
+    if (/^\/public\//.test(this.url)) {
+      this.url = this.url.replace(/^\/public\//, '/');
+    }
+    yield next;
+  });
+
   if (process.argv[3] === '--build') {
-
+    app.use(serve(path.join(CWD, 'dist')));
   } else {
-
-    app.use(function *(next) {
-      if (typeof this.query.__delay !== 'undefined') {
-        yield new Promise(res => setTimeout(res, Number(this.query.__delay || 1500)));
-      }
-      if (this.method === 'GET' && isIndexRoute(this.url)) {
-        this.url = '/index.html';
-      }
-      if (/^\/public\//.test(this.url)) {
-        this.url = this.url.replace(/^\/public\//, '/');
-      }
-      yield next;
-    });
     app.use(serve(path.join(CWD, 'public')));
     app.use(serve(path.join(CWD, '_ts')));
   }

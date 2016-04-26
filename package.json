@@ -16,15 +16,16 @@
     "ts": "node ./scripts/typescripts.js --watch",
     "js:build": "node ./scripts/build-js.js",
     "prejs:build": "cp -rf ./public/app ./public/vendor ./public/test ./dist",
-    "dpostjs:build": "rm -rf ./dist/app ./dist/test",
+    "postjs:build": "rm -rf ./dist/app ./dist/test ./dist/vendor",
     "sass": "node ./scripts/gen-css.js --watch",
     "sass:build": "node ./scripts/gen-css.js --build",
     "start": "concurrently 'npm run ts' 'npm run gen-html' 'npm run sass' 'npm run server'",
     "server": "s-server ./scripts/dev-server.js --liveload",
+    "server:build": "s-server ./scripts/dev-server.js --build",
     "copy:npm": "node ./scripts/copy-npm.js",
     "copy:build": "cp -rf ./public/img ./public/fonts ./public/dashboards ./dist",
     "postinstall": "npm run copy:npm",
-    "build": "rm -rf ./dist && mkdir ./dist && concurrently 'npm run copy:build' 'npn run gen-html:build' 'npm run js:build' 'npm run sass:build'"
+    "build": "rm -rf ./dist && mkdir ./dist && concurrently 'npm run copy:build' 'npm run js:build' 'npm run sass:build' 'npm run gen-html:build'"
   },
   "devDependencies": {
     "zone.js": "^0.6.6",
