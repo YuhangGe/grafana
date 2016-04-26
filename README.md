@@ -1,3 +1,13 @@
+修改版 Grafana, 去掉了 grunt, 并将 index.html 进行了前后端分离.
+
+首先按下面的原始 ReadMe 编译后端, 成功后执行 `./bin/grafana-server`
+
+然后执行 `npm install` 安装依赖, 完成后执行 `npm start`, 
+就可以访问 `127.0.0.1:8000` 进行本地开发了.
+
+发布时需要打包, 执行 `npm build`, 构建好的内容位于 `./dist` 目录
+
+
 [Grafana](http://grafana.org) [![Circle CI](https://circleci.com/gh/grafana/grafana.svg?style=svg)](https://circleci.com/gh/grafana/grafana) [![Coverage Status](https://coveralls.io/repos/grafana/grafana/badge.png)](https://coveralls.io/r/grafana/grafana)
 ================
 [Website](http://grafana.org) |
