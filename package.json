@@ -10,7 +10,6 @@
     "npm": "2.14.x"
   },
   "scripts": {
-    "gen-css": "",
     "gen-html": "node ./scripts/gen-html.js --watch",
     "gen-html:build": "node ./scripts/gen-html.js --build",
     "ts": "node ./scripts/typescripts.js --watch",
