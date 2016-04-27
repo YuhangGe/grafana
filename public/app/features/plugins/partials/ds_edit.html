@@ -4,20 +4,16 @@
 <div class="page-container">
 
   <div class="page-header">
-		<h1 ng-show="ctrl.isNew">Add data source</h1>
-		<h1 ng-hide="ctrl.isNew">Edit data source</h1>
+		<h1 ng-show="ctrl.isNew" i18n="Add data source"></h1>
+		<h1 ng-hide="ctrl.isNew" i18n="Edit data source"></h1>
 
 		<div class="page-header-tabs" ng-show="ctrl.hasDashboards">
 			<ul class="gf-tabs">
 				<li class="gf-tabs-item">
-					<a class="gf-tabs-link" ng-click="ctrl.tabIndex = 0" ng-class="{active: ctrl.tabIndex === 0}">
-					  Config
-					</a>
+					<a class="gf-tabs-link" ng-click="ctrl.tabIndex = 0" ng-class="{active: ctrl.tabIndex === 0}" i18n="Config"></a>
 				</li>
 				<li class="gf-tabs-item">
-					<a class="gf-tabs-link" ng-click="ctrl.tabIndex = 1" ng-class="{active: ctrl.tabIndex === 1}">
-					  Dashboards
-					</a>
+					<a class="gf-tabs-link" ng-click="ctrl.tabIndex = 1" ng-class="{active: ctrl.tabIndex === 1}" i18n="Dashboards"></a>
 				</li>
 			</ul>
 		</div>
@@ -29,19 +25,21 @@
       <div class="gf-form-group">
         <div class="gf-form-inline">
 					<div class="gf-form">
-						<span class="gf-form-label width-7">Name</span>
+						<span class="gf-form-label width-7" i18n="Name"></span>
 						<input class="gf-form-input max-width-21" type="text" ng-model="ctrl.current.name" placeholder="My data source name" required>
 						<info-popover offset="0px -135px" mode="right-absolute">
-							The name is used when you select the data source in panels.
+							<span i18n="ds.edit.name.tip">
+                The name is used when you select the data source in panels.
 							The <em>Default</em> data source is preselected in new
 							panels.
+              </span>
 						</info-popover>
 					</div>
 					<gf-form-switch class="gf-form" label="Default" checked="ctrl.current.isDefault" switch-class="max-width-6"></gf-form-switch>
 				</div>
 
 				<div class="gf-form">
-					<span class="gf-form-label width-7">Type</span>
+					<span class="gf-form-label width-7" i18n="Type"></span>
 					<div class="gf-form-select-wrapper max-width-23">
 						<select class="gf-form-input" ng-model="ctrl.current.type" ng-options="v.id as v.name for v in ctrl.types" ng-change="ctrl.typeChanged()"></select>
 					</div>
@@ -62,12 +60,10 @@
 			</div>
 
 			<div class="gf-form-button-row">
-				<button type="submit" class="btn btn-success" ng-show="ctrl.isNew" ng-click="ctrl.saveChanges()">Add</button>
-				<button type="submit" class="btn btn-success" ng-show="!ctrl.isNew" ng-click="ctrl.saveChanges()">Save &amp; Test</button>
-				<button type="submit" class="btn btn-danger" ng-show="!ctrl.isNew" ng-click="ctrl.delete()">
-					Delete
-				</button>
-				<a class="btn btn-link" href="datasources">Cancel</a>
+				<button type="submit" class="btn btn-success" ng-show="ctrl.isNew" ng-click="ctrl.saveChanges()" i18n="Add"></button>
+				<button type="submit" class="btn btn-success" ng-show="!ctrl.isNew" ng-click="ctrl.saveChanges()" i18n="Save and Test">Save &amp; Test</button>
+				<button type="submit" class="btn btn-danger" ng-show="!ctrl.isNew" ng-click="ctrl.delete()" i18n="Delete"></button>
+				<a class="btn btn-link" href="datasources" i18n="Cancel"></a>
 			</div>
 
 		</form>

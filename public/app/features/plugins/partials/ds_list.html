@@ -6,10 +6,10 @@
 
 <div class="page-container">
 	<div class="page-header">
-		<h1>Data Sources</h1>
+		<h1 i18n="Data Sources"></h1>
 		<a class="btn btn-success" href="datasources/new">
 			<i class="fa fa-plus"></i>
-			Add data source
+			<span i18n="Add data source"></span>
 		</a>
 	</div>
 
@@ -32,7 +32,7 @@
 							<div class="card-item-name">
 								{{ds.name}}
 								<span ng-if="ds.isDefault">
-									<span class="btn btn-secondary btn-mini">default</span>
+									<span class="btn btn-secondary btn-mini" i18n="Default">default</span>
 								</span>
 							</div>
 							<div class="card-item-sub-name">

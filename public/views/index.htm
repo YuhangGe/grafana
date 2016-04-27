@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <meta name="theme-color" content="#000">
 
-  <title>Grafana</title>
+  <title ng-bind="appName">Grafana</title>
 
   <!--if DEBUG -->
   <link href='/css/fonts.css' rel='stylesheet' type='text/css'>
@@ -71,7 +71,11 @@
 
 
 <!-- if DEBUG -->
+<script>
+  window.__DEBUG = true;
+</script>
 <script src="/__liveload.js"></script>
+<script src="/app/loader.js"></script>
 <script src="/vendor/npm/es6-shim/es6-shim.js"></script>
 <script src="/vendor/npm/systemjs/dist/system.src.js"></script>
 <script src="/app/system.conf.js"></script>

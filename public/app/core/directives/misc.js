@@ -2,8 +2,9 @@ define([
   'angular',
   '../core_module',
   'app/core/utils/kbn',
+  'app/core/i18n'
 ],
-function (angular, coreModule, kbn) {
+function (angular, coreModule, kbn, i18n) {
   'use strict';
 
   coreModule.default.directive('tip', function($compile) {
@@ -55,7 +56,8 @@ function (angular, coreModule, kbn) {
     return {
       restrict: 'E',
       link: function(scope, elem, attrs) {
-        var text = $interpolate(attrs.text)(scope);
+        var _text = $interpolate(attrs.text)(scope);
+        var text = i18n(_text) || _text;
         var model = $interpolate(attrs.model)(scope);
         var ngchange = attrs.change ? (' ng-change="' + attrs.change + '"') : '';
         var tip = attrs.tip ? (' <tip>' + attrs.tip + '</tip>') : '';

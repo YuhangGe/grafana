@@ -3,49 +3,49 @@
 
 <div class="page-container">
 	<div class="page-header">
-		<h1>Stats</h1>
+		<h1 i18n="Server Stats"></h1>
 	</div>
 
 	<table class="filter-table form-inline">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Value</th>
-			</tr>
-		</thead>
+		<!--<thead>-->
+			<!--<tr>-->
+				<!--<th i18n="setting.key">Name</th>-->
+				<!--<th i18n="setting.value">Value</th>-->
+			<!--</tr>-->
+		<!--</thead>-->
 		<tbody>
 			<tr>
-				<td>Total dashboards</td>
+				<td i18n="Total dashboards"></td>
 				<td>{{ctrl.stats.dashboard_count}}</td>
 			</tr>
 			<tr>
-				<td>Total users</td>
+				<td i18n="Total users"></td>
 				<td>{{ctrl.stats.user_count}}</td>
 			</tr>
+			<!--<tr>-->
+				<!--<td>Total organizations</td>-->
+				<!--<td>{{ctrl.stats.org_count}}</td>-->
+			<!--</tr>-->
 			<tr>
-				<td>Total organizations</td>
-				<td>{{ctrl.stats.org_count}}</td>
-			</tr>
-			<tr>
-				<td>Total datasources</td>
+				<td i18n="Total datasources"></td>
 				<td>{{ctrl.stats.data_source_count}}</td>
 			</tr>
+			<!--<tr>-->
+				<!--<td>Total playlists</td>-->
+				<!--<td>{{ctrl.stats.playlist_count}}</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td>Total snapshots</td>-->
+				<!--<td>{{ctrl.stats.db_snapshot_count}}</td>-->
+			<!--</tr>-->
 			<tr>
-				<td>Total playlists</td>
-				<td>{{ctrl.stats.playlist_count}}</td>
-			</tr>
-			<tr>
-				<td>Total snapshots</td>
-				<td>{{ctrl.stats.db_snapshot_count}}</td>
-			</tr>
-			<tr>
-				<td>Total dashboard tags</td>
+				<td i18n="Total dashboard tags"></td>
 				<td>{{ctrl.stats.db_tag_count}}</td>
 			</tr>
-			<tr>
-				<td>Total starred dashboards</td>
-				<td>{{ctrl.stats.starred_db_count}}</td>
-			</tr>
+			<!--<tr>-->
+				<!--<td>Total starred dashboards</td>-->
+				<!--<td>{{ctrl.stats.starred_db_count}}</td>-->
+			<!--</tr>-->
 		</tbody>
 	</table>
 </div>

@@ -28,7 +28,7 @@ export class ContextSrv {
   lightTheme: any;
 
   constructor() {
-    this.pinned = store.getBool('grafana.sidemenu.pinned', false);
+    this.pinned = store.getBool('grafana.sidemenu.pinned', true);
     if (this.pinned) {
       this.sidemenu = true;
     }
@@ -59,8 +59,8 @@ export class ContextSrv {
 
   toggleSideMenu() {
     this.sidemenu = !this.sidemenu;
-    if (!this.sidemenu) {
-      this.setPinnedState(false);
+    if (this.sidemenu) {
+      this.setPinnedState(true);
     }
   }
 }

@@ -3,26 +3,26 @@
 
 <div class="page-container">
 	<div class="page-header">
-		<h1>Profile</h1>
+		<h1 i18n="Profile"></h1>
 	</div>
 
 	<form name="ctrl.userForm" class="gf-form-group">
-		<h3 class="page-heading">Information</h3>
+		<h3 class="page-heading" i18n="Information"></h3>
 
 		<div class="gf-form">
-			<span class="gf-form-label width-9">Name</span>
+			<span class="gf-form-label width-9" i18n="Name"></span>
 			<input class="gf-form-input max-width-21" type="text" required ng-model="ctrl.user.name" >
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-9">Email</span>
+			<span class="gf-form-label width-9" i18n="Email"></span>
 			<input class="gf-form-input max-width-21" type="email" required ng-model="ctrl.user.email">
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-9">Username</span>
+			<span class="gf-form-label width-9" i18n="Username"></span>
 			<input class="gf-form-input max-width-21" type="text" required ng-model="ctrl.user.login">
 		</div>
 		<div class="gf-form-button-row">
-			<button type="submit" class="btn btn-success" ng-click="ctrl.update()">Update</button>
+			<button type="submit" class="btn btn-success" ng-click="ctrl.update()" i18n="Update"></button>
 		</div>
 	</form>
 

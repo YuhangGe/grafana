@@ -99,9 +99,10 @@ module.exports = function (app, server, port) {
       return;
     }
     let port = 3000; // default is grafana server
-
+    let ip = 'http://127.0.0.1';
     if (/^\/prometheus\//.test(this.url)) {
       this.url = this.url.replace(/^\/prometheus\//, '/');
+      // ip = 'http://192.168.1.101';
       port = 9090;
     } else if (/^\/elasticsearch\//.test(this.url)) {
       this.url = this.url.replace(/^\/elasticsearch\//, '/');
@@ -110,7 +111,7 @@ module.exports = function (app, server, port) {
       this.url = this.url.replace(/^\/sockdb\//, '/');
       port = 9300;
     }
-    let remoteUrl = 'http://127.0.0.1:' + port + this.url;
+    let remoteUrl = `${ip}:${port}${this.url}`;
     console.log('Proxy ' + this.method + ' ==> ' + remoteUrl);
     let res = this.res;
     this.req.pipe(request(remoteUrl, {

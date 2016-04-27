@@ -85,9 +85,13 @@ export class GrafanaApp {
     // makes it possible to add dynamic stuff
     this.useModule(coreModule);
 
-    var preBootRequires = [System.import('app/features/all')];
+    var preBootRequires = [System.import('app/features/all'), System.import('app/core/i18n')];
 
-    Promise.all(preBootRequires).then(() => {
+    Promise.all(preBootRequires).then((modules) => {
+      var i18n = modules[1];
+      app.run(['$rootScope', function ($rootScope) {
+        $rootScope.appName = i18n('HanSight');
+      }]);
       // disable tool tip animation
       $.fn.tooltip.defaults.animation = false;
       // bootstrap the app
@@ -99,7 +103,8 @@ export class GrafanaApp {
         this.preBootModules = null;
       });
     }).catch(function(err) {
-      console.log('Application boot failed:', err);
+      console.log('Application boot failed:');
+      console.log( err);
     });
   }
 }

@@ -8,9 +8,9 @@ import Drop from 'tether-drop';
 
 var template = `
 <label for="check-{{ctrl.id}}" class="gf-form-label {{ctrl.labelClass}} pointer">
-  {{ctrl.label}}
+  {{ctrl.label | t}}
   <info-popover mode="right-normal" ng-if="ctrl.tooltip">
-    {{ctrl.tooltip}}
+    {{ctrl.tooltip | t}}
   </info-popover>
 </label>
 <div class="gf-form-switch {{ctrl.switchClass}}" ng-if="ctrl.show">
