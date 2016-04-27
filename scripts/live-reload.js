@@ -53,7 +53,11 @@ function init(app, server, port, onReadyCallback) {
       return;
     }
     yield next;
-  })
+  });
+
+  if (_util.existsSync(path.join(CWD, '_ts', '.tsready'))) {
+    onReadyCallback && onReadyCallback();
+  }
 }
 
 function handleChange(event, file) {

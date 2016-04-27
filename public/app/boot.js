@@ -12,6 +12,8 @@
       if (http.status === 200) {
         try {
           var bootData = JSON.parse(http.responseText);
+          // console.log(bootData.Settings)
+          // bootData.Settings.appSubUrl = 'http://127.0.0.1:3000';
           window.grafanaBootData = {
             user: bootData.User,
             settings: bootData.Settings,
@@ -31,7 +33,8 @@
 
   function bootError(err) {
     err && console.log(err);
-    document.getElementById('splash').innerHTML = '<p class="error">加载出错, 请刷新重试或联系管理员</p>';
+    var $s = document.getElementById('splash');
+    $s && ($s.innerHTML = '<p class="error">加载出错, 请刷新重试或联系管理员</p>');
   }
 
   // then, we load theme
@@ -41,7 +44,8 @@
     $style.setAttribute('rel', 'stylesheet');
     $style.setAttribute('type', 'text/css');
     $style.onload = function () {
-      document.body.removeChild(document.getElementById('splash'));
+      var $s = document.getElementById('splash');
+      $s && document.body.removeChild($s);
       bootGrafana();
     };
     $style.setAttribute('href', '/css/grafana.' + (window.grafanaBootData.user.lightTheme ? 'light' : 'dark') + (__DEBUG ? '' : '.min') + '.css');

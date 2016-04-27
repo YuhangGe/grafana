@@ -15,6 +15,7 @@ const IndexRoutes = [
   "/admin/stats",
   '/datasources',
   '/datasources/new',
+  /^\/datasources\/edit\/.+/,
   '/org/users',
   '/org/apikeys',
   '/dashboard/import',
@@ -66,7 +67,6 @@ module.exports = function (app, server, port) {
 
   app.use(function *(next) {
     if (!ready) {
-      // console.log('Dev-Server not ready, waiting...');
       yield readyPromise;
     }
     yield next;
@@ -98,8 +98,20 @@ module.exports = function (app, server, port) {
       yield next;
       return;
     }
-    let remoteUrl = 'http://127.0.0.1:3000' + this.url;
-    console.log('Proxy ==> ' + remoteUrl);
+    let port = 3000; // default is grafana server
+
+    if (/^\/prometheus\//.test(this.url)) {
+      this.url = this.url.replace(/^\/prometheus\//, '/');
+      port = 9090;
+    } else if (/^\/elasticsearch\//.test(this.url)) {
+      this.url = this.url.replace(/^\/elasticsearch\//, '/');
+      port = 9200;
+    } else if (/^\/sockdb\//.test(this.url)) {
+      this.url = this.url.replace(/^\/sockdb\//, '/');
+      port = 9300;
+    }
+    let remoteUrl = 'http://127.0.0.1:' + port + this.url;
+    console.log('Proxy ' + this.method + ' ==> ' + remoteUrl);
     let res = this.res;
     this.req.pipe(request(remoteUrl, {
       followRedirect: false
