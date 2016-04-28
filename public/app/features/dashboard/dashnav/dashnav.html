@@ -1,10 +1,10 @@
 <navbar>
 
-<!--<a class="pointer navbar-page-btn" ng-if="::!dashboardMeta.isSnapshot" ng-click="openSearch()">-->
-	<!--<i class="icon-gf icon-gf-dashboard"></i>-->
-	<!--<span>{{dashboard.title}}</span>-->
+<a class="navbar-page-btn" ng-if="::!dashboardMeta.isSnapshot" ng-click="openSearch()">
+	<i class="icon-gf icon-gf-dashboard"></i>
+	<span>{{dashboard.title}}</span>
 	<!--<i class="fa fa-caret-down"></i>-->
-<!--</a>-->
+</a>
 
 <!--<a class="pointer navbar-page-btn" ng-if="::dashboardMeta.isSnapshot" bs-tooltip="titleTooltip" data-placement="bottom" ng-click="openSearch()">-->
 	<!--<i class="icon-gf icon-gf-snapshot"></i>-->
@@ -15,11 +15,11 @@
 <!--</a>-->
 
 <ul class="nav pull-left dashnav-action-icons">
-	<li ng-show="::dashboardMeta.canStar">
-		<a class="pointer" ng-click="starDashboard()">
-			<i class="fa" ng-class="{'fa-star-o': !dashboardMeta.isStarred, 'fa-star': dashboardMeta.isStarred}" style="color: orange;"></i>
-		</a>
-	</li>
+	<!--<li ng-show="::dashboardMeta.canStar">-->
+		<!--<a class="pointer" ng-click="starDashboard()">-->
+			<!--<i class="fa" ng-class="{'fa-star-o': !dashboardMeta.isStarred, 'fa-star': dashboardMeta.isStarred}" style="color: orange;"></i>-->
+		<!--</a>-->
+	<!--</li>-->
 	<!--<li ng-show="::dashboardMeta.canShare" class="dropdown">-->
 		<!--<a class="pointer" ng-click="hideTooltip($event)" bs-tooltip="'Share dashboard'" data-placement="bottom" data-toggle="dropdown"><i class="fa fa-share-square-o"></i></a>-->
 		<!--<ul class="dropdown-menu">-->
@@ -53,27 +53,27 @@
 	</li>
 </ul>
 
-<ul class="nav dash-playlist-actions" ng-if="playlistSrv">
-	<li>
-		<a ng-click="playlistSrv.prev()"><i class="fa fa-step-backward"></i></a>
-	</li>
-	<li>
-		<a ng-click="playlistSrv.stop()"><i class="fa fa-stop"></i></a>
-	</li>
-	<li>
-		<a ng-click="playlistSrv.next()"><i class="fa fa-step-forward"></i></a>
-	</li>
-</ul>
+<!--<ul class="nav dash-playlist-actions" ng-if="playlistSrv">-->
+	<!--<li>-->
+		<!--<a ng-click="playlistSrv.prev()"><i class="fa fa-step-backward"></i></a>-->
+	<!--</li>-->
+	<!--<li>-->
+		<!--<a ng-click="playlistSrv.stop()"><i class="fa fa-stop"></i></a>-->
+	<!--</li>-->
+	<!--<li>-->
+		<!--<a ng-click="playlistSrv.next()"><i class="fa fa-step-forward"></i></a>-->
+	<!--</li>-->
+<!--</ul>-->
 
-<ul class="nav pull-right">
-	<li ng-show="dashboard.meta.fullscreen" class="dashnav-back-to-dashboard">
-		<a ng-click="exitFullscreen()">
-			Back to dashboard
-		</a>
-	</li>
-	<li ng-if="dashboard">
-		<gf-time-picker dashboard="dashboard"></gf-time-picker>
-	</li>
-</ul>
+<!--<ul class="nav pull-right">-->
+	<!--<li ng-show="dashboard.meta.fullscreen" class="dashnav-back-to-dashboard">-->
+		<!--<a ng-click="exitFullscreen()">-->
+			<!--Back to dashboard-->
+		<!--</a>-->
+	<!--</li>-->
+	<!--<li ng-if="dashboard">-->
+		<!--<gf-time-picker dashboard="dashboard"></gf-time-picker>-->
+	<!--</li>-->
+<!--</ul>-->
 
 </navbar>

@@ -65,15 +65,17 @@
 
 .row-open {
   margin-top: 5px;
-  left: -30px;
+  left: -23px;
   position: absolute;
   z-index: 100;
   transition: .10s left;
   transition-delay: .10s;
 
   &:hover {
-    left: -12px;
+    left: 0;
   }
+
+
 }
 
 .row-control-inner {
@@ -285,5 +287,16 @@ div.flot-text {
     display: inline-block;
     @include brand-bottom-border();
     padding: 0.5rem .5rem .2rem .5rem;
+  }
+}
+
+.grafana-row {
+  .row-open {
+    display: none;
+  }
+  &:hover {
+    .row-open {
+      display: block;
+    }
   }
 }

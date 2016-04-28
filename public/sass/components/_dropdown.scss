@@ -242,3 +242,10 @@
   z-index: 1051;
   margin-top: 2px; // give it some space to breathe
 }
+
+.dropdown .dropdown-menu.dropdown-user-panel {
+  min-width: calc(100% + 1px);
+  > li > a {
+    line-height: 46px;
+  }
+}

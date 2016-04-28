@@ -8,7 +8,6 @@ const fs = require('fs');
 const livereload = require('./live-reload.js');
 
 const IndexRoutes = [
-  '/login',
   /^\/invite\/.+/,
   '/profile/password',
   '/profile',
@@ -78,6 +77,9 @@ module.exports = function (app, server, port) {
     }
     if (this.method === 'GET' && isIndexRoute(this.url)) {
       this.url = '/index.html';
+    }
+    if (this.method === 'GET' && /^\/login/.test(this.url)) {
+      this.url = '/login.html'
     }
     if (/^\/public\//.test(this.url)) {
       this.url = this.url.replace(/^\/public\//, '/');

@@ -9,6 +9,7 @@ awsconfig
 /public/vendor/npm
 /public/css
 /public/index.html
+/public/login.html
 /_ts
 /tmp
 vendor/phantomjs/phantomjs

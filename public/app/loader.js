@@ -50,6 +50,11 @@ window.__bootGrafanaError = function(err) {
   }
 
   getJson('/api/boot_data').then(function(bootData) {
+    if (!bootData.User.isSignedIn) {
+      location.href = '/login?url=' + encodeURIComponent(location.href);
+      return;
+    }
+    console.log(bootData.User);
     window.grafanaBootData = {
       user: bootData.User,
       settings: bootData.Settings,

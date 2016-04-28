@@ -27,15 +27,27 @@
   .icon-gf-grafana_wordmark {
     color: $link-color;
     position: relative;
-    top: -4.5rem;
     font-size: 2.5rem;
     text-shadow: 3px 3px 5px black;
+    &:before {
+      content: none;
+    }
   }
 }
 
 .login-inner-box {
   background: $panel-bg;
   text-align: center;
+
+  .error-tip {
+    color: #f44336;
+    display: none;
+    text-align: left;
+  }
+
+  .help-tip {
+
+  }
 }
 
 .login-tab-header {
@@ -187,7 +199,6 @@
       width: 125px;
     }
     .icon-gf-grafana_wordmark {
-      top: -5px;
       font-size: 3rem;
     }
   }

@@ -1,5 +1,6 @@
 {
-  "title": "Http Monitor",
+  "title": "HTTP Monitor",
+  "icon": "fa fa-fw fa-cogs",
   "id": 1,
   "tags": [],
   "style": "dark",

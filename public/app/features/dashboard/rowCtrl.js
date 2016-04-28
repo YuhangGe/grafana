@@ -8,7 +8,7 @@ function (angular, _, config) {
 
   var module = angular.module('grafana.controllers');
 
-  module.controller('RowCtrl', function($scope, $rootScope, $timeout) {
+  module.controller('RowCtrl', function($scope, $rootScope, $timeout, contextSrv) {
     var _d = {
       title: "Row",
       height: "150px",
@@ -22,6 +22,8 @@ function (angular, _, config) {
     $scope.init = function() {
       $scope.editor = {index: 0};
     };
+
+    $scope.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
 
     $scope.togglePanelMenu = function(posX) {
       $scope.showPanelMenu = !$scope.showPanelMenu;

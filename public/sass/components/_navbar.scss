@@ -8,7 +8,7 @@
 
 .navbar-inner {
   min-height: $navbarHeight;
-  padding-right: $spacer;
+  //padding-right: $spacer;
   background-color: $navbarBackground;
   border-bottom: $navbarBorder;
   @include clearfix();
@@ -65,6 +65,11 @@
   background-color: $navbarButtonBackground;
   padding: 0.4rem 1.0rem 0.4rem 1rem;
 
+  .fa {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+  }
   .fa-caret-down {
     font-size: 70%;
   }
@@ -93,12 +98,16 @@
   }
 
   .icon-gf-grafana_wordmark {
-    font-size: 21px;
+    font-size: 17px;
     position: relative;
-    top: 4px;
-    padding-left: 5px;
+    top: 0;
     display: none;
+    &:before {
+      content: none;
+    }
   }
+
+
 }
 
 .navbar-page-btn {
@@ -154,8 +163,6 @@
     &:hover .fa-chevron-left {
       display: inline-block;
       color: $text-color-weak;
-      position: relative;
-      left: 1.3rem;
     }
   }
 }

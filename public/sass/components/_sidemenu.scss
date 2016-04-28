@@ -30,7 +30,7 @@
     min-height: calc(100% - 54px);
   }
   .dashboard-container {
-    padding-left: $side-menu-width + 0.5rem;
+    padding-left: $side-menu-width;
   }
   .page-container {
     margin-left: $side-menu-width;
@@ -120,7 +120,7 @@
 
 
   .sidemenu-item-text {
-    padding-left: 11px;
+    padding-left: 7px;
   }
 
   img {

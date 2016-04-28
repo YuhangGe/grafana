@@ -28,28 +28,28 @@ export class SideMenuCtrl {
         link.children.splice(1, 1); // 不需要组织(org)管理
       }
       if (link.text === 'Dashboards' && link.children.length === 6) {
-        link.children.splice(1, 2);
+        link.children.splice(0, 4);
       }
       return link;
     });
     this.openUserDropdown();
-    console.log(this.mainLinks)
 
     backendSrv.get('/api/search').then(dashboards => {
-      // console.log(data);
+      console.log(dashboards);
       this.mainLinks = this.mainLinks.concat(dashboards.map(ds => {
         return {
           text: i18n(ds.title) || ds.title,
-          url: '/dashboard/' + ds.uri
+          url: '/dashboard/' + ds.uri,
+          icon: ds.icon || 'fa fa-fw fa-cogs'
         }
       }));
     });
 
-    this.$scope.$on('$routeChangeSuccess', () => {
-      if (!this.contextSrv.pinned) {
-        this.contextSrv.sidemenu = false;
-      }
-    });
+    // this.$scope.$on('$routeChangeSuccess', () => {
+    //   if (!this.contextSrv.pinned) {
+    //     this.contextSrv.sidemenu = false;
+    //   }
+    // });
 
   }
 

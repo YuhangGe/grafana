@@ -1,9 +1,9 @@
 <div class="navbar-inner">
 	<a class="navbar-brand-btn pointer" ng-click="ctrl.contextSrv.toggleSideMenu()">
 		<span class="navbar-brand-btn-background">
-			<img src="public/img/grafana_icon.svg"></img>
+			<img src="public/img/han_sight_logo.png"/>
 		</span>
-		<i class="icon-gf icon-gf-grafana_wordmark"></i>
+		<span class="icon-gf-grafana_wordmark" i18n="HanSight NTAS"></span>
 		<i class="fa fa-caret-down"></i>
 		<i class="fa fa-chevron-left"></i>
 	</a>
@@ -15,4 +15,20 @@
 	</a>
 
 	<div ng-transclude></div>
+
+  <div class="dropdown pull-right">
+    <a class="pointer navbar-page-btn dropdown-toggle" data-toggle="dropdown" style="border: 0;">
+      <i class="fa fa-fw fa-user"></i>
+      {{::ctrl.user.name}}
+      <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user-panel" role="menu">
+      <li>
+        <a i18n="Profile" href="/profile"></a>
+      </li>
+      <li>
+        <a i18n="Sign out" href="/logout" target="_self"></a>
+      </li>
+    </ul>
+  </div>
 </div>

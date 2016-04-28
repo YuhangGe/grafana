@@ -54,6 +54,7 @@ function (angular, $, config, moment) {
         $scope.dashboard = dashboard;
         $scope.dashboardMeta = dashboard.meta;
         $scope.dashboardViewState = dashboardViewStateSrv.create($scope);
+        $scope.isGrafanaAdmin = contextSrv.isGrafanaAdmin;
 
         dashboardKeybindings.shortcuts($scope);
 
