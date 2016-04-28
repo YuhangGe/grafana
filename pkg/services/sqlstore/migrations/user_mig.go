@@ -58,7 +58,8 @@ func addUserMigrations(mg *Migrator) {
 			{Name: "is_admin", Type: DB_Bool, Nullable: false},
 			{Name: "email_verified", Type: DB_Bool, Nullable: true},
 			{Name: "theme", Type: DB_NVarchar, Length: 255, Nullable: true},
-			{Name: "created", Type: DB_DateTime, Nullable: false},
+      {Name: "language", Type: DB_NVarchar, Length: 255, Nullable: true},
+      {Name: "created", Type: DB_DateTime, Nullable: false},
 			{Name: "updated", Type: DB_DateTime, Nullable: false},
 		},
 		Indices: []*Index{

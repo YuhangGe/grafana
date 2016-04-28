@@ -22,6 +22,7 @@ type User struct {
 	Company       string
 	EmailVerified bool
 	Theme         string
+  Language      string
 
 	IsAdmin bool
 	OrgId   int64
@@ -62,7 +63,7 @@ type UpdateUserCommand struct {
 	Email string `json:"email"`
 	Login string `json:"login"`
 	Theme string `json:"theme"`
-
+  Language string `json:"language"`
 	UserId int64 `json:"-"`
 }
 
@@ -145,7 +146,8 @@ type UserProfileDTO struct {
 	Name           string `json:"name"`
 	Login          string `json:"login"`
 	Theme          string `json:"theme"`
-	OrgId          int64  `json:"orgId"`
+  Language       string `json:"language"`
+  OrgId          int64  `json:"orgId"`
 	IsGrafanaAdmin bool   `json:"isGrafanaAdmin"`
 }
 

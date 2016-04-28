@@ -188,6 +188,7 @@ func UpdateUser(cmd *m.UpdateUserCommand) error {
 			Email:   cmd.Email,
 			Login:   cmd.Login,
 			Theme:   cmd.Theme,
+      Language: cmd.Language,
 			Updated: time.Now(),
 		}
 
@@ -249,6 +250,7 @@ func GetUserProfile(query *m.GetUserProfileQuery) error {
 		Email:          user.Email,
 		Login:          user.Login,
 		Theme:          user.Theme,
+    Language:       user.Language,
 		IsGrafanaAdmin: user.IsAdmin,
 		OrgId:          user.OrgId,
 	}

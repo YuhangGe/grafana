@@ -37,6 +37,7 @@ type Dashboard struct {
 	UpdatedBy int64
 	CreatedBy int64
 
+  Icon  string
 	Title string
 	Data  *simplejson.Json
 }
@@ -62,6 +63,7 @@ func NewDashboardFromJson(data *simplejson.Json) *Dashboard {
 	dash := &Dashboard{}
 	dash.Data = data
 	dash.Title = dash.Data.Get("title").MustString()
+  dash.Icon = dash.Data.Get("icon").MustString()
 	dash.UpdateSlug()
 
 	if id, err := dash.Data.Get("id").Float64(); err == nil {

@@ -20,6 +20,7 @@ type Preferences struct {
 	Theme           string
 	Created         time.Time
 	Updated         time.Time
+  Language        string
 }
 
 // ---------------------
@@ -50,4 +51,5 @@ type SavePreferencesCommand struct {
 	HomeDashboardId int64  `json:"homeDashboardId"`
 	Timezone        string `json:"timezone"`
 	Theme           string `json:"theme"`
+  Language        string `json:"language"`
 }

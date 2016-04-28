@@ -61,6 +61,7 @@ func (index *JsonDashIndex) Search(query *Query) ([]*Hit, error) {
 		// add results with matchig title filter
 		if strings.Contains(item.TitleLower, queryStr) {
 			results = append(results, &Hit{
+        Icon: item.Dashboard.Icon,
 				Type:  DashHitJson,
 				Title: item.Dashboard.Title,
 				Tags:  item.Dashboard.GetTags(),

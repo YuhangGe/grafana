@@ -51,6 +51,7 @@ func updatePreferencesFor(orgId int64, userId int64, dtoCmd *dtos.UpdatePrefsCmd
 		UserId:          userId,
 		OrgId:           orgId,
 		Theme:           dtoCmd.Theme,
+    Language:        dtoCmd.Language,
 		Timezone:        dtoCmd.Timezone,
 		HomeDashboardId: dtoCmd.HomeDashboardId,
 	}

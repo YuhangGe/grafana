@@ -11,6 +11,7 @@ const (
 
 type Hit struct {
 	Id        int64    `json:"id"`
+  Icon      string   `json:"icon"`
 	Title     string   `json:"title"`
 	Uri       string   `json:"uri"`
 	Type      HitType  `json:"type"`

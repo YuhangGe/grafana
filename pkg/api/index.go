@@ -35,6 +35,7 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 			IsGrafanaAdmin: c.IsGrafanaAdmin,
 			LightTheme:     prefs.Theme == "light",
 			Timezone:       prefs.Timezone,
+      Language:       prefs.Language,
 		},
 		Settings:           settings,
 		AppUrl:             setting.AppUrl,

@@ -26,6 +26,7 @@ func GetPreferencesWithDefaults(query *m.GetPreferencesWithDefaultsQuery) error 
 	}
 
 	res := &m.Preferences{
+    Language:        "", // default is empty, use browser's default
 		Theme:           "dark",
 		Timezone:        "browser",
 		HomeDashboardId: 0,
@@ -41,6 +42,9 @@ func GetPreferencesWithDefaults(query *m.GetPreferencesWithDefaultsQuery) error 
 		if p.HomeDashboardId != 0 {
 			res.HomeDashboardId = p.HomeDashboardId
 		}
+    if (p.Language != "") {
+      res.Language = p.Language
+    }
 	}
 
 	query.Result = res
@@ -78,6 +82,7 @@ func SavePreferences(cmd *m.SavePreferencesCommand) error {
 				HomeDashboardId: cmd.HomeDashboardId,
 				Timezone:        cmd.Timezone,
 				Theme:           cmd.Theme,
+        Language:        cmd.Language,
 				Created:         time.Now(),
 				Updated:         time.Now(),
 			}
@@ -87,6 +92,7 @@ func SavePreferences(cmd *m.SavePreferencesCommand) error {
 			prefs.HomeDashboardId = cmd.HomeDashboardId
 			prefs.Timezone = cmd.Timezone
 			prefs.Theme = cmd.Theme
+      prefs.Language = cmd.Language
 			prefs.Updated = time.Now()
 			prefs.Version += 1
 			_, err := sess.Id(prefs.Id).AllCols().Update(&prefs)
