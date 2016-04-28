@@ -34,6 +34,7 @@ func getPreferencesFor(orgId int64, userId int64) Response {
 
 	dto := dtos.Prefs{
 		Theme:           prefsQuery.Result.Theme,
+    Language:        prefsQuery.Result.Language,
 		HomeDashboardId: prefsQuery.Result.HomeDashboardId,
 		Timezone:        prefsQuery.Result.Timezone,
 	}

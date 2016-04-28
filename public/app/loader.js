@@ -61,7 +61,7 @@ window.__bootGrafanaError = function(err) {
       mainNavLinks: bootData.MainNavLinks
     };
     Promise.all([
-      getJson('/locals/' + (bootData.Settings.language || navigator.language || 'zh-CN') + '.json'),
+      getJson('/locals/' + (bootData.User.language || navigator.language || 'zh-CN') + '.json'),
       loadTheme(bootData.User.lightTheme ? 'light' : 'dark')
     ]).then(function (ds) {
       window.__bootGrafanaLocalJson = ds[0];
