@@ -6,7 +6,7 @@
 		</label>
 
 		<metric-segment-model property="agg.type" options="bucketAggTypes" on-change="onTypeChanged()" custom="false" css-class="width-10"></metric-segment-model>
-		<metric-segment-model ng-if="agg.field" property="agg.field" get-options="getFieldsInternal()" on-change="onChange()" css-class="width-12"></metric-segment>
+		<metric-segment-model ng-if="agg.field" property="agg.field" get-options="getFieldsInternal()" on-change="onChange()" css-class="width-12"></metric-segment-model>
 	</div>
 
 	<div class="gf-form gf-form--grow">
@@ -83,6 +83,13 @@
 					<a class="pointer" ng-click="removeFiltersQuery(filter)"><i class="fa fa-minus"></i></a>
 				</label>
 			</div>
+		</div>
+	</div>
+
+	<div ng-if="agg.type === 'geohash_grid'">
+		<div class="gf-form offset-width-7">
+			<label class="gf-form-label">Precision</label>
+			<input type="number" class="gf-form-input max-width-12" ng-model="agg.settings.precision" spellcheck='false' placeholder="3" ng-blur="onChangeInternal()">
 		</div>
 	</div>
 
