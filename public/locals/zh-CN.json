@@ -82,7 +82,15 @@
   "Confirm Password": "确认密码",
   "ds.edit.name.tip": "名称会被用来在面板(panel)中选择数据源",
   "Local browser time": "浏览器本地时间",
-
+  "Title": "标题",
+  "Icon": "图标",
+  "Tags": "标签",
+  "Toggles": "操控",
+  "Editable": "可编辑",
+  "Hide Controls": "隐藏控制栏",
+  "Shared Crosshair": "分享",
+  "add tags": "添加标签",
+  "Press enter to a add tag": "输入回车键添加标签",
 
   "HTTP Monitor": "HTTP 监控",
   "TCP Monitor": "TCP 监控",

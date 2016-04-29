@@ -1,12 +1,10 @@
 <div class="tabbed-view-header">
-	<h2 class="tabbed-view-title">
-		Settings
-	</h2>
+	<h2 class="tabbed-view-title" i18n="Settings"></h2>
 
 	<ul class="gf-tabs">
 		<li class="gf-tabs-item" ng-repeat="tab in ::['General', 'Rows', 'Links', 'Time picker', 'Metadata']">
 			<a class="gf-tabs-link" ng-click="editor.index = $index" ng-class="{active: editor.index === $index}">
-				{{::tab}}
+				{{::tab | t}}
 			</a>
 		</li>
 	</ul>
@@ -20,30 +18,34 @@
 	<div ng-if="editor.index == 0">
 
 		<div class="gf-form-group section">
-      <h5 class="section-heading">Details</h5>
+      <h5 class="section-heading" i18n="Details"></h5>
 			<div class="gf-form">
-				<label class="gf-form-label width-7">Title</label>
-				<input type="text" class="gf-form-input width-25" ng-model='dashboard.title'></input>
+				<label class="gf-form-label width-7" i18n="Title"></label>
+				<input type="text" class="gf-form-input width-25" ng-model='dashboard.title'/>
 			</div>
+      <div class="gf-form">
+        <label class="gf-form-label width-7" i18n="Icon"></label>
+        <input type="text" class="gf-form-input width-25" ng-model='dashboard.icon'/>
+      </div>
 			<div class="gf-form">
 				<label class="gf-form-label width-7">
-          Tags
-          <info-popover mode="right-normal">Press enter to a add tag</info-popover>
+          <span i18n="Tags"></span>
+          <info-popover mode="right-normal"><span i18n="Press enter to a add tag"></span></info-popover>
         </label>
 				<bootstrap-tagsinput ng-model="dashboard.tags" tagclass="label label-tag" placeholder="add tags">
 				</bootstrap-tagsinput>
 			</div>
 
 			<div class="gf-form">
-				<label class="gf-form-label width-7">Timezone</label>
+				<label class="gf-form-label width-7" i18n="Timezone"></label>
 				<div class="gf-form-select-wrapper">
-					<select ng-model="dashboard.timezone" class='gf-form-input' ng-options="f.value as f.text for f in [{value: '', text: 'Default'}, {value: 'browser', text: 'Local browser time'},{value: 'utc', text: 'UTC'}]" ng-change="timezoneChanged()"></select>
+					<select ng-model="dashboard.timezone" class='gf-form-input' ng-options="f.value as (f.text | t) for f in [{value: '', text: 'Default'}, {value: 'browser', text: 'Local browser time'},{value: 'utc', text: 'UTC'}]" ng-change="timezoneChanged()"></select>
 				</div>
 			</div>
 		</div>
 
     <div class="section">
-      <h5 class="section-heading">Toggles</h5>
+      <h5 class="section-heading" i18n="Toggles"></h5>
       <div class="gf-form-group">
         <gf-form-switch class="gf-form"
                         label="Editable"
@@ -69,13 +71,13 @@
 	</div>
 
 	<div ng-if="editor.index == 1">
-		<h5 class="section-heading">Rows settings</h5>
+		<h5 class="section-heading" i18n="Rows settings"></h5>
 
 		<div class="gf-form-group">
 			<div class="gf-form-inline" ng-repeat="row in dashboard.rows">
 				<div class="gf-form">
-					<span class="gf-form-label">Title</span>
-					<input type="text" class="gf-form-input max-width-14" ng-model='row.title'></input>
+					<span class="gf-form-label" i18n="Title"></span>
+					<input type="text" class="gf-form-input max-width-14" ng-model='row.title'/>
 				</div>
 				<gf-form-switch class="gf-form" label="Show title" checked="row.showTitle" switch-class="max-width-6"></gf-form-switch>
 
@@ -103,26 +105,26 @@
 	</div>
 
 	<div ng-if="editor.index == 4">
-		<h5 class="section-heading">Dashboard info</h5>
+		<h5 class="section-heading" i18n="Dashboard info"></h5>
 		<div class="gf-form-group">
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Last updated at:</span>
+				<span class="gf-form-label width-10" i18n="Last updated at:"></span>
 				<span class="gf-form-label width-18">{{formatDate(dashboardMeta.updated)}}</span>
 			</div>
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Last updated by:</span>
+				<span class="gf-form-label width-10" i18n="Last updated by:"></span>
 				<span class="gf-form-label width-18">{{dashboardMeta.updatedBy}}&nbsp;</span>
 			</div>
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Created at:</span>
+				<span class="gf-form-label width-10" i18n="Created at:"></span>
 				<span class="gf-form-label width-18">{{formatDate(dashboardMeta.created)}}&nbsp;</span>
 			</div>
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Created by:</span>
+				<span class="gf-form-label width-10" i18n="Created by:"></span>
 				<span class="gf-form-label width-18">{{dashboardMeta.createdBy}}&nbsp;</span>
 			</div>
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Current version:</span>
+				<span class="gf-form-label width-10" i18n="Current version:"></span>
 				<span class="gf-form-label width-18">{{dashboardMeta.version}}&nbsp;</span>
 			</div>
 		</div>

@@ -3,6 +3,7 @@ package sqlstore
 import (
 	"bytes"
 	"fmt"
+  "time"
 
 	"github.com/go-xorm/xorm"
 	"github.com/grafana/grafana/pkg/bus"
@@ -118,8 +119,10 @@ func GetDashboard(query *m.GetDashboardQuery) error {
 type DashboardSearchProjection struct {
 	Id    int64
 	Title string
+  Icon  string
 	Slug  string
 	Term  string
+  Created  time.Time
 }
 
 func SearchDashboards(query *search.FindPersistedDashboardsQuery) error {
@@ -129,6 +132,8 @@ func SearchDashboards(query *search.FindPersistedDashboardsQuery) error {
 	sql.WriteString(`SELECT
 					  dashboard.id,
 					  dashboard.title,
+					  dashboard.icon,
+					  dashboard.created,
 					  dashboard.slug,
 					  dashboard_tag.term
 					FROM dashboard
@@ -181,8 +186,10 @@ func SearchDashboards(query *search.FindPersistedDashboardsQuery) error {
 		hit, exists := hits[item.Id]
 		if !exists {
 			hit = &search.Hit{
+        Created: item.Created,
 				Id:    item.Id,
 				Title: item.Title,
+        Icon:  item.Icon,
 				Uri:   "db/" + item.Slug,
 				Type:  search.DashHitDB,
 				Tags:  []string{},

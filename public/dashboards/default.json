@@ -1,6 +1,6 @@
 {
   "title": "HTTP Monitor",
-  "icon": "fa fa-fw fa-cogs",
+  "icon": "fa fa-fw fa-bar-chart",
   "id": 1,
   "tags": [],
   "style": "dark",

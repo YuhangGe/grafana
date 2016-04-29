@@ -1,8 +1,8 @@
 <navbar>
 
-<a class="navbar-page-btn" ng-if="::!dashboardMeta.isSnapshot" ng-click="openSearch()">
-	<i class="icon-gf icon-gf-dashboard"></i>
-	<span>{{dashboard.title}}</span>
+<a class="navbar-page-btn" ng-if="::!dashboardMeta.isSnapshot">
+	<i ng-class="dashboard.icon"></i>
+	<span>{{dashboard.title | t}}</span>
 	<!--<i class="fa fa-caret-down"></i>-->
 </a>
 

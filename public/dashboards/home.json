@@ -2,7 +2,7 @@
   "id": 0,
   "title": "TCP Monitor",
   "originalTitle": "TCP Monitor",
-  "icon": "icon-gf icon-gf-apps",
+  "icon": "fa fa-fw fa-line-chart",
   "tags": [],
   "style": "dark",
   "timezone": "browser",

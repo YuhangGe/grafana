@@ -2,7 +2,7 @@ define([
   './core_module'
 ], function (coreModule) {
   'use strict';
-  
+
   var localJson = {};
 
   function i18n(msg) {
@@ -14,7 +14,10 @@ define([
   i18n.registerJson = function (json) {
     localJson = json;
   };
-
+  i18n.t = function (msg) {
+    return i18n(msg) || msg;
+  };
+  
   coreModule.default.directive('i18n', function () {
     return {
       restrict: 'A',

@@ -54,7 +54,6 @@ window.__bootGrafanaError = function(err) {
       location.href = '/login?url=' + encodeURIComponent(location.href);
       return;
     }
-    console.log(bootData.User);
     window.grafanaBootData = {
       user: bootData.User,
       settings: bootData.Settings,

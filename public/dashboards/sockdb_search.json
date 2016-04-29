@@ -2,6 +2,7 @@
   "id": 2,
   "title": "Socks Search",
   "originalTitle": "Socks Search",
+  "icon": "fa fa-fw fa-search",
   "tags": [],
   "style": "dark",
   "timezone": "browser",

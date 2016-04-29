@@ -2,9 +2,10 @@ define([
   'angular',
   'jquery',
   '../core_module',
-  'bootstrap-tagsinput',
+  'app/core/i18n',
+  'bootstrap-tagsinput'
 ],
-function (angular, $, coreModule) {
+function (angular, $, coreModule, i18n) {
   'use strict';
 
   function djb2(str) {
@@ -81,7 +82,7 @@ function (angular, $, coreModule) {
         var select = $('select', element);
 
         if (attrs.placeholder) {
-          select.attr('placeholder', attrs.placeholder);
+          select.attr('placeholder', i18n.t(attrs.placeholder));
         }
 
         select.tagsinput({

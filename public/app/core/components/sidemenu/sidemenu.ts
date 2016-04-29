@@ -22,7 +22,7 @@ export class SideMenuCtrl {
     this.showSignout = this.contextSrv.isSignedIn && !config['authProxyEnabled'];
 
     this.mainLinks = config.bootData.mainNavLinks.filter(link => {
-      return link.text !== 'Dashboards' || this.user.isGrafanaAdmin;
+      return link.text !== 'Plugins' && (link.text !== 'Dashboards' || this.user.isGrafanaAdmin);
     }).map(link => {
       if (link.text === 'Admin' && link.children.length === 4) {
         link.children.splice(1, 1); // 不需要组织(org)管理
@@ -35,14 +35,28 @@ export class SideMenuCtrl {
     this.openUserDropdown();
 
     backendSrv.get('/api/search').then(dashboards => {
-      console.log(dashboards);
-      this.mainLinks = this.mainLinks.concat(dashboards.map(ds => {
-        return {
+
+      var defaultMenus = [];
+      var customMenus = [];
+      dashboards.forEach(function (ds) {
+        var m = {
+          id: ds.id,
           text: i18n(ds.title) || ds.title,
           url: '/dashboard/' + ds.uri,
-          icon: ds.icon || 'fa fa-fw fa-cogs'
+          icon: ds.icon
+        };
+        if (ds.type === 'dash-json') {
+          defaultMenus.push(m);
+        } else {
+          customMenus.push(m);
         }
-      }));
+      });
+
+      defaultMenus = defaultMenus.sort(function (d1, d2) {
+        return d1.id - d2.id;
+      });
+
+      this.mainLinks = this.mainLinks.concat(defaultMenus).concat(customMenus);
     });
 
     // this.$scope.$on('$routeChangeSuccess', () => {

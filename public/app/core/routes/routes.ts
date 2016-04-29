@@ -146,57 +146,57 @@ function setupAngularRoutes($routeProvider, $locationProvider) {
     resolve: loadAdminBundle,
   })
   // LOGIN / SIGNUP
-  .when('/login', {
-    templateUrl: 'public/app/partials/login.html',
-    controller : 'LoginCtrl',
-  })
-  .when('/invite/:code', {
-    templateUrl: 'public/app/partials/signup_invited.html',
-    controller : 'InvitedCtrl',
-  })
-  .when('/signup', {
-    templateUrl: 'public/app/partials/signup_step2.html',
-    controller : 'SignUpCtrl',
-  })
-  .when('/user/password/send-reset-email', {
-    templateUrl: 'public/app/partials/reset_password.html',
-    controller : 'ResetPasswordCtrl',
-  })
-  .when('/user/password/reset', {
-    templateUrl: 'public/app/partials/reset_password.html',
-    controller : 'ResetPasswordCtrl',
-  })
+  // .when('/login', {
+  //   templateUrl: 'public/app/partials/login.html',
+  //   controller : 'LoginCtrl',
+  // })
+  // .when('/invite/:code', {
+  //   templateUrl: 'public/app/partials/signup_invited.html',
+  //   controller : 'InvitedCtrl',
+  // })
+  // .when('/signup', {
+  //   templateUrl: 'public/app/partials/signup_step2.html',
+  //   controller : 'SignUpCtrl',
+  // })
+  // .when('/user/password/send-reset-email', {
+  //   templateUrl: 'public/app/partials/reset_password.html',
+  //   controller : 'ResetPasswordCtrl',
+  // })
+  // .when('/user/password/reset', {
+  //   templateUrl: 'public/app/partials/reset_password.html',
+  //   controller : 'ResetPasswordCtrl',
+  // })
   .when('/dashboard/snapshots', {
     templateUrl: 'public/app/features/snapshot/partials/snapshots.html',
     controller : 'SnapshotsCtrl',
     controllerAs: 'ctrl',
   })
-  .when('/plugins', {
-    templateUrl: 'public/app/features/plugins/partials/plugin_list.html',
-    controller: 'PluginListCtrl',
-    controllerAs: 'ctrl',
-    resolve: loadPluginsBundle,
-  })
-  .when('/plugins/:pluginId/edit', {
-    templateUrl: 'public/app/features/plugins/partials/plugin_edit.html',
-    controller: 'PluginEditCtrl',
-    controllerAs: 'ctrl',
-    resolve: loadPluginsBundle,
-  })
-  .when('/plugins/:pluginId/page/:slug', {
-    templateUrl: 'public/app/features/plugins/partials/plugin_page.html',
-    controller: 'AppPageCtrl',
-    controllerAs: 'ctrl',
-    resolve: loadPluginsBundle,
-  })
+  // .when('/plugins', {
+  //   templateUrl: 'public/app/features/plugins/partials/plugin_list.html',
+  //   controller: 'PluginListCtrl',
+  //   controllerAs: 'ctrl',
+  //   resolve: loadPluginsBundle,
+  // })
+  // .when('/plugins/:pluginId/edit', {
+  //   templateUrl: 'public/app/features/plugins/partials/plugin_edit.html',
+  //   controller: 'PluginEditCtrl',
+  //   controllerAs: 'ctrl',
+  //   resolve: loadPluginsBundle,
+  // })
+  // .when('/plugins/:pluginId/page/:slug', {
+  //   templateUrl: 'public/app/features/plugins/partials/plugin_page.html',
+  //   controller: 'AppPageCtrl',
+  //   controllerAs: 'ctrl',
+  //   resolve: loadPluginsBundle,
+  // })
   .when('/global-alerts', {
     templateUrl: 'public/app/features/dashboard/partials/globalAlerts.html',
   })
-  .when('/styleguide/:page?', {
-    controller: 'StyleGuideCtrl',
-    controllerAs: 'ctrl',
-    templateUrl: 'public/app/features/styleguide/styleguide.html',
-  })
+  // .when('/styleguide/:page?', {
+  //   controller: 'StyleGuideCtrl',
+  //   controllerAs: 'ctrl',
+  //   templateUrl: 'public/app/features/styleguide/styleguide.html',
+  // })
   .otherwise({
     templateUrl: 'public/app/partials/error.html',
     controller: 'ErrorCtrl'

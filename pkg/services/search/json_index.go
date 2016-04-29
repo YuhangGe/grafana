@@ -18,6 +18,7 @@ type JsonDashIndex struct {
 
 type JsonDashIndexItem struct {
 	TitleLower string
+  Id         int64
 	TagsCsv    string
 	Path       string
 	Dashboard  *m.Dashboard
@@ -61,6 +62,8 @@ func (index *JsonDashIndex) Search(query *Query) ([]*Hit, error) {
 		// add results with matchig title filter
 		if strings.Contains(item.TitleLower, queryStr) {
 			results = append(results, &Hit{
+        Id:    item.Dashboard.Id,
+        Created:  time.Now(),
         Icon: item.Dashboard.Icon,
 				Type:  DashHitJson,
 				Title: item.Dashboard.Title,
@@ -133,6 +136,7 @@ func loadDashboardFromFile(filename string) (*JsonDashIndexItem, error) {
 	item.TitleLower = strings.ToLower(item.Dashboard.Title)
 	item.TagsCsv = strings.Join(item.Dashboard.GetTags(), ",")
 	item.Path = stat.Name()
+  item.Id = item.Dashboard.Id
 
 	return item, nil
 }

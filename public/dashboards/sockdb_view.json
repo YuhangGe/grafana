@@ -2,6 +2,7 @@
   "id": 3,
   "title": "Socks View",
   "originalTitle": "Socks View",
+  "icon": "fa fa-fw fa-table",
   "tags": [],
   "style": "dark",
   "timezone": "browser",

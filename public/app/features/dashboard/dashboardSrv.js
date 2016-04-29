@@ -22,6 +22,7 @@ function (angular, $, _, moment) {
 
       this.id = data.id || null;
       this.title = data.title || 'No Title';
+      this.icon = data.icon || 'icon-gf icon-gf-apps';
       this.originalTitle = this.title;
       this.tags = data.tags || [];
       this.style = data.style || "dark";

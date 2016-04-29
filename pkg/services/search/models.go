@@ -1,5 +1,7 @@
 package search
-
+import (
+  "time"
+)
 type HitType string
 
 const (
@@ -17,13 +19,14 @@ type Hit struct {
 	Type      HitType  `json:"type"`
 	Tags      []string `json:"tags"`
 	IsStarred bool     `json:"isStarred"`
+  Created   time.Time `json:"created"`
 }
 
 type HitList []*Hit
 
 func (s HitList) Len() int           { return len(s) }
 func (s HitList) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s HitList) Less(i, j int) bool { return s[i].Title < s[j].Title }
+func (s HitList) Less(i, j int) bool { return s[i].Created.Before(s[j].Created) }
 
 type Query struct {
 	Title        string
