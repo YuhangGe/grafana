@@ -10,6 +10,7 @@ const EMPTY_TITLE_HEIGHT = 9;
 const PANEL_PADDING = 5;
 
 import {Emitter} from 'app/core/core';
+import i18n from 'app/core/i18n';
 
 export class PanelCtrl {
   panel: any;
@@ -87,7 +88,7 @@ export class PanelCtrl {
 
   initEditMode() {
     this.editorTabs = [];
-    this.addEditorTab('General', 'public/app/partials/panelgeneral.html');
+    this.addEditorTab(i18n.t('General'), 'public/app/partials/panelgeneral.html');
     this.editModeInitiated = true;
     this.events.emit('init-edit-mode', null);
   }
@@ -109,12 +110,12 @@ export class PanelCtrl {
 
   getMenu() {
     let menu = [];
-    menu.push({text: 'View', click: 'ctrl.viewPanel(); dismiss();'});
-    menu.push({text: 'Edit', click: 'ctrl.editPanel(); dismiss();', role: 'Editor'});
+    menu.push({text: i18n.t('View'), click: 'ctrl.viewPanel(); dismiss();'});
+    menu.push({text: i18n.t('Edit'), click: 'ctrl.editPanel(); dismiss();', role: 'Editor'});
     if (!this.fullscreen) { //  duplication is not supported in fullscreen mode
-      menu.push({ text: 'Duplicate', click: 'ctrl.duplicate()', role: 'Editor' });
+      menu.push({ text: i18n.t('Duplicate'), click: 'ctrl.duplicate()', role: 'Editor' });
     }
-    menu.push({text: 'Share', click: 'ctrl.sharePanel(); dismiss();'});
+    // menu.push({text: 'Share', click: 'ctrl.sharePanel(); dismiss();'});
     return menu;
   }
 
@@ -175,10 +176,10 @@ export class PanelCtrl {
 
   removePanel() {
     this.publishAppEvent('confirm-modal', {
-      title: 'Remove Panel',
-      text: 'Are you sure you want to remove this panel?',
+      title: i18n.t('Remove Panel'),
+      text: i18n.t('Are you sure you want to remove this panel?'),
       icon: 'fa-trash',
-      yesText: 'Remove',
+      yesText: i18n.t('Remove'),
       onConfirm: () => {
         this.row.panels = _.without(this.row.panels, this.panel);
       }

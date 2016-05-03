@@ -1,0 +1,22 @@
+{
+  "type": "panel",
+  "name": "PCAP Download",
+  "id": "hansight_pcap",
+
+  "info": {
+    "description": "瀚思网络分析系统 PCAP 查询下载页面",
+    "author": {
+      "name": "HanSight",
+      "url": "http://hansight.com"
+    },
+    "logos": {
+      "small": "/img/han_sight_logo.png",
+      "large": "/img/han_sight_logo.png"
+    },
+    "version": "1.0.0"
+  },
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "panel",
+  "name": "Socks View",
+  "id": "hansight_dbview",
+
+  "info": {
+    "description": "瀚思网络分析系统字段展现查询页面",
+    "author": {
+      "name": "HanSight",
+      "url": "http://hansight.com"
+    },
+    "logos": {
+      "small": "/img/han_sight_logo.png",
+      "large": "/img/han_sight_logo.png"
+    },
+    "version": "1.0.0"
+  },
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

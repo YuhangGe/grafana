@@ -171,24 +171,24 @@ function setupAngularRoutes($routeProvider, $locationProvider) {
     controller : 'SnapshotsCtrl',
     controllerAs: 'ctrl',
   })
-  // .when('/plugins', {
-  //   templateUrl: 'public/app/features/plugins/partials/plugin_list.html',
-  //   controller: 'PluginListCtrl',
-  //   controllerAs: 'ctrl',
-  //   resolve: loadPluginsBundle,
-  // })
-  // .when('/plugins/:pluginId/edit', {
-  //   templateUrl: 'public/app/features/plugins/partials/plugin_edit.html',
-  //   controller: 'PluginEditCtrl',
-  //   controllerAs: 'ctrl',
-  //   resolve: loadPluginsBundle,
-  // })
-  // .when('/plugins/:pluginId/page/:slug', {
-  //   templateUrl: 'public/app/features/plugins/partials/plugin_page.html',
-  //   controller: 'AppPageCtrl',
-  //   controllerAs: 'ctrl',
-  //   resolve: loadPluginsBundle,
-  // })
+  .when('/plugins', {
+    templateUrl: 'public/app/features/plugins/partials/plugin_list.html',
+    controller: 'PluginListCtrl',
+    controllerAs: 'ctrl',
+    resolve: loadPluginsBundle,
+  })
+  .when('/plugins/:pluginId/edit', {
+    templateUrl: 'public/app/features/plugins/partials/plugin_edit.html',
+    controller: 'PluginEditCtrl',
+    controllerAs: 'ctrl',
+    resolve: loadPluginsBundle,
+  })
+  .when('/plugins/:pluginId/page/:slug', {
+    templateUrl: 'public/app/features/plugins/partials/plugin_page.html',
+    controller: 'AppPageCtrl',
+    controllerAs: 'ctrl',
+    resolve: loadPluginsBundle,
+  })
   .when('/global-alerts', {
     templateUrl: 'public/app/features/dashboard/partials/globalAlerts.html',
   })

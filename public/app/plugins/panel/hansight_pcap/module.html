@@ -1,0 +1,32 @@
+<div class="hansight-pcap-content">
+  <h1 i18n="PCAP Download"></h1>
+  <!--<p i18n="pcap.download.tip">Enter IP four tuple to download PCAP package</p>-->
+  <div class="row">
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Local IP"></label>
+      <input ng-model="ctrl.fourTuple.localIP" type="text" class="gf-form-input">
+    </div>
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Local Port"></label>
+      <input ng-model="ctrl.fourTuple.localPort" type="text" class="gf-form-input">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Remote IP"></label>
+      <input ng-model="ctrl.fourTuple.remoteIP" type="text" class="gf-form-input">
+    </div>
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Remote Port"></label>
+      <input ng-model="ctrl.fourTuple.remotePort" type="text" class="gf-form-input">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 gf-form">
+      <button ng-disabled="ctrl._submitting" ng-click="ctrl.download()" type="button" class="btn btn-primary pull-right">
+        <i ng-show="ctrl._submitting" class="fa fa-spin fa-spinner"></i>
+        <span i18n="Download"></span>
+      </button>
+    </div>
+  </div>
+</div>

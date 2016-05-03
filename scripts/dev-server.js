@@ -6,6 +6,7 @@ const path = require('path');
 const CWD = process.cwd();
 const fs = require('fs');
 const livereload = require('./live-reload.js');
+const MockJs = require('mockjs');
 
 const IndexRoutes = [
   /^\/invite\/.+/,
@@ -92,6 +93,7 @@ module.exports = function (app, server, port) {
   } else {
     app.use(serve(path.join(CWD, 'public')));
     app.use(serve(path.join(CWD, '_ts')));
+    app.use(mockHanSight);
   }
 
   app.use(function *(next) {
@@ -109,8 +111,8 @@ module.exports = function (app, server, port) {
     } else if (/^\/elasticsearch\//.test(this.url)) {
       this.url = this.url.replace(/^\/elasticsearch\//, '/');
       port = 9200;
-    } else if (/^\/sockdb\//.test(this.url)) {
-      this.url = this.url.replace(/^\/sockdb\//, '/');
+    } else if (/^\/hansight\//.test(this.url)) {
+      this.url = this.url.replace(/^\/hansight\//, '/');
       port = 9300;
     }
     let remoteUrl = `${ip}:${port}${this.url}`;
@@ -126,3 +128,29 @@ module.exports = function (app, server, port) {
     this.response = false;
   });
 };
+
+function* mockHanSight(next) {
+  if (/^\/hansight\/view/.test(this.url)) {
+    var data = MockJs.mock({
+      'list|100': [{
+        timestamp: '@datetime("T")',
+        localIP: '@ip',
+        'localPort|60-10000': 0,
+        remoteIP: '@ip',
+        'remotePort|60-10000': 0
+      }]
+    });
+    this.body = data.list.map(it => {
+      it.timestamp = Number(it.timestamp);
+      return it;
+    }).sort((a, b) => a.timestamp - b.timestamp);
+  } else if (/^\/hansight\/pcap/.test(this.url)) {
+    this.body = {
+      url: 'http://127.0.0.1:8000/pcap/2016-04-02.rar'
+    }
+  } else if (this.url === '/pcap/2016-04-02.rar') {
+    this.body = new Buffer(100);
+  } else {
+    yield next;
+  }
+}

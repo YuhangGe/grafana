@@ -1,0 +1,19 @@
+{
+  "type": "datasource",
+  "name": "HanSight datasource",
+  "id": "hansight",
+
+  "metrics": false,
+  "annotations": false,
+
+  "info": {
+    "author": {
+      "name": "HanSight",
+      "url": "http://hansight.com"
+    },
+    "logos": {
+      "small": "/img/han_sight_logo.png",
+      "large": "/img/han_sight_logo.png"
+    }
+  }
+}

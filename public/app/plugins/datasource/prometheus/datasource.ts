@@ -35,7 +35,6 @@ export function PrometheusDatasource(instanceSettings, $q, backendSrv, templateS
         "Authorization": this.basicAuth
       };
     }
-
     return backendSrv.datasourceRequest(options);
   };
 

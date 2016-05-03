@@ -41,7 +41,8 @@
     "websocket": "^1.0.22",
     "clean-css": "^3.4.12",
     "ng-annotate": "^1.2.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "mockjs": "^1.0.1-beta2"
   },
   "dependencies": {
     "eventemitter3": "^1.2.0",

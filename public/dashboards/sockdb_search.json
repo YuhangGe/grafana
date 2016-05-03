@@ -1,17 +1,34 @@
 {
   "id": 2,
-  "title": "Socks Search",
-  "originalTitle": "Socks Search",
+  "title": "PCAP Download",
+  "originalTitle": "PCAP Download",
   "icon": "fa fa-fw fa-search",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
-  "editable": true,
+  "editable": false,
   "hideControls": true,
   "sharedCrosshair": false,
   "rows": [
-
- ],
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "editable": false,
+          "error": false,
+          "id": 1,
+          "isNew": true,
+          "links": [],
+          "span": 12,
+          "title": "",
+          "type": "hansight_pcap"
+        }
+      ],
+      "title": "Row"
+    }
+  ],
   "time": {
     "from": "now-6h",
     "to": "now"

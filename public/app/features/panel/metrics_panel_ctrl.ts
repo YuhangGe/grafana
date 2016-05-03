@@ -6,6 +6,7 @@ import _ from 'lodash';
 import kbn from 'app/core/utils/kbn';
 import {PanelCtrl} from './panel_ctrl';
 
+import i18n from 'app/core/i18n';
 import * as rangeUtil from 'app/core/utils/rangeutil';
 import * as dateMath from 'app/core/utils/datemath';
 
@@ -50,8 +51,8 @@ class MetricsPanelCtrl extends PanelCtrl {
   }
 
   private onInitMetricsPanelEditMode() {
-    this.addEditorTab('Metrics', 'public/app/partials/metrics.html');
-    this.addEditorTab('Time range', 'public/app/features/panel/partials/panelTime.html');
+    this.addEditorTab(i18n.t('Metrics'), 'public/app/partials/metrics.html');
+    this.addEditorTab(i18n.t('Time range'), 'public/app/features/panel/partials/panelTime.html');
   }
 
   private onMetricsPanelRefresh() {
