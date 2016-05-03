@@ -39,9 +39,10 @@ export class SideMenuCtrl {
       var defaultMenus = [];
       var customMenus = [];
       dashboards.forEach(function (ds) {
+        ds.title = ds.type === 'dash-json' ? i18n.t(ds.title) : ds.title;
         var m = {
           id: ds.id,
-          text: i18n(ds.title) || ds.title,
+          text: ds.title,
           url: '/dashboard/' + ds.uri,
           icon: ds.icon
         };

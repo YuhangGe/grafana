@@ -1,5 +1,5 @@
 {
-  "name": "piechart-panel",
+  "name": "grafana-plugin-piechart-panel",
   "private": true,
   "version": "1.0.0",
   "description": "",

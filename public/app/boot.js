@@ -11,15 +11,12 @@ window.__bootGrafana = function () {
   if (window.__DEBUG) {
     System.cacheBust = '?bust=' + Date.now();
   }
-  Promise.all([
-    System.import('app/app'),
-    System.import('app/core/i18n')
-  ]).then(function(modules) {
-    var app = modules[0].default;
-    var i18n = modules[1]; // i18n 模块没有使用 ts 不需要通过 .default 引入
+  System.import('app/core/i18n').then(function (i18n) {
     i18n.registerJson(window.__bootGrafanaLocalJson);
-    app.init();
     delete window.__bootGrafanaLocalJson;
+    return System.import('app/app');
+  }).then(function(app) {
+    app.default.init();
     delete window.__bootGrafanaError;
   }).catch(function(err) {
     window.__bootGrafanaError(err);

@@ -91,6 +91,9 @@
   "Shared Crosshair": "分享",
   "add tags": "添加标签",
   "Press enter to a add tag": "输入回车键添加标签",
+  "New dashboard": "新建仪表盘",
+  "Not found": "未找到",
+  "Panel Title": "面板标题",
 
   "HTTP Monitor": "HTTP 监控",
   "TCP Monitor": "TCP 监控",

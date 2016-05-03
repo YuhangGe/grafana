@@ -1,7 +1,8 @@
 define([
   '../core_module',
+  'app/core/i18n'
 ],
-function (coreModule) {
+function (coreModule, i18n) {
   "use strict";
 
   coreModule.default.controller('LoadDashboardCtrl', function($scope, $routeParams, dashboardLoaderSrv, backendSrv, $location) {
@@ -12,6 +13,7 @@ function (coreModule) {
           $location.path('dashboard/' + homeDash.redirectUri);
         } else {
           var meta = homeDash.meta;
+          homeDash.dashboard.title = i18n.t(homeDash.dashboard.title);
           meta.canSave = meta.canShare = meta.canStar = false;
           $scope.initDashboard(homeDash, $scope);
         }
@@ -20,6 +22,9 @@ function (coreModule) {
     }
 
     dashboardLoaderSrv.loadDashboard($routeParams.type, $routeParams.slug).then(function(result) {
+      if ($routeParams.type === 'file') {
+        result.dashboard.title = i18n.t(result.dashboard.title);
+      }
       $scope.initDashboard(result, $scope);
     });
 
@@ -27,7 +32,7 @@ function (coreModule) {
 
   coreModule.default.controller('DashFromImportCtrl', function($scope, $location, alertSrv) {
     if (!window.grafanaImportDashboard) {
-      alertSrv.set('Not found', 'Cannot reload page with unsaved imported dashboard', 'warning', 7000);
+      alertSrv.set(i18n.t('Not found'), i18n.t('Cannot reload page with unsaved imported dashboard'), 'warning', 7000);
       $location.path('');
       return;
     }
@@ -41,7 +46,7 @@ function (coreModule) {
     $scope.initDashboard({
       meta: { canStar: false, canShare: false },
       dashboard: {
-        title: "New dashboard",
+        title: i18n.t("New dashboard"),
         rows: [{ height: '250px', panels:[] }]
       },
     }, $scope);
