@@ -41,7 +41,7 @@ class PrometheusQueryCtrl extends QueryCtrl {
     // called from typeahead so need this
     // here in order to ensure this ref
     this.suggestMetrics = (query, callback) => {
-      console.log(this);
+      // console.log(this);
       this.datasource.performSuggestQuery(query).then(callback);
     };
 

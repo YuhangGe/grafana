@@ -1,38 +1,192 @@
 {
   "id": 0,
-  "title": "TCP Monitor",
-  "originalTitle": "TCP Monitor",
-  "icon": "fa fa-fw fa-line-chart",
+  "title": "HTTP Monitor",
+  "icon": "fa fa-fw fa-bar-chart",
+  "originalTitle": "HTTP Monitor",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
-  "editable": true,
+  "editable": false,
   "hideControls": true,
   "sharedCrosshair": false,
   "rows": [
-
- ],
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "350px",
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "format": "short",
+          "id": 2,
+          "interval": null,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "legendType": "On graph",
+          "links": [],
+          "maxDataPoints": 3,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "pieType": "pie",
+          "span": 6,
+          "targets": [
+            {
+              "expr": "http_request_size_bytes",
+              "interval": "5m",
+              "intervalFactor": 2,
+              "legendFormat": "{{handler}}",
+              "metric": "http_request_size_bytes",
+              "refId": "B",
+              "step": 600
+            }
+          ],
+          "title": "http_request_size_bytes",
+          "type": "piechart"
+        },
+        {
+          "title": "http_requests_total",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "piechart",
+          "isNew": true,
+          "id": 3,
+          "targets": [
+            {
+              "expr": "http_requests_total",
+              "intervalFactor": 2,
+              "refId": "A",
+              "metric": "http_requests_total",
+              "step": 600,
+              "legendFormat": "{{handler}}",
+              "interval": "5m"
+            }
+          ],
+          "pieType": "pie",
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "links": [],
+          "datasource": null,
+          "maxDataPoints": 3,
+          "interval": null,
+          "cacheTimeout": null,
+          "nullText": null,
+          "nullPointMode": "connected",
+          "legendType": "On graph",
+          "format": "short"
+        }
+      ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": 8000,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": 20000,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "http_request_duration_microseconds",
+              "intervalFactor": 2,
+              "legendFormat": "{{quantile}}",
+              "metric": "http_request_duration_microseconds",
+              "refId": "A",
+              "step": 30
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "http_request_duration_microseconds",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": 30000,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "title": "Row"
+    }
+  ],
   "time": {
     "from": "now-6h",
     "to": "now"
   },
-  "timepicker": {
-    "enable": false,
-    "refresh_intervals": [
-      "1s",
-      "5s",
-      "10s",
-      "30s"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "6h"
-    ],
-    "type": "timepicker"
-  },
+  "timepicker": {},
   "templating": {
     "list": []
   },
@@ -40,6 +194,6 @@
     "list": []
   },
   "schemaVersion": 12,
-  "version": 2,
+  "version": 10,
   "links": []
 }
