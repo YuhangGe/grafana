@@ -110,6 +110,7 @@
   "Local Port": "源端口",
   "Remote IP": "目的 IP",
   "Remote Port": "目的端口",
+  "No Records": "暂无数据",
 
   "HTTP Monitor": "HTTP 监控",
   "TCP Monitor": "TCP 监控",

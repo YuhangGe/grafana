@@ -135,6 +135,11 @@ function (angular, $, config, moment) {
       });
     };
 
+    $scope.$on('sidebar-pinned', function () {
+      $timeout.cancel(resizeEventTimeout);
+      resizeEventTimeout = $timeout(function() { $scope.$broadcast('render'); }, 0);
+    });
+
     $scope.timezoneChanged = function() {
       $rootScope.$broadcast("refresh");
     };

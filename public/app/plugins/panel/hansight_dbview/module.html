@@ -1,3 +1,26 @@
 <div class="hansight-dbview-content">
-  <p>Hello World</p>
+  <div class="page-header">
+     <h1>字段展现</h1>
+  </div>
+  <table class="filter-table form-inline">
+    <thead>
+    <tr>
+      <th i18n="Local IP"></th>
+      <th i18n="Local Port"></th>
+      <th i18n="Remote IP"></th>
+      <th i18n="Remote Port"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in ctrl.records">
+      <td>{{row.localIP}}</td>
+      <td>{{row.localPort}}</td>
+      <td>{{row.remoteIP}}</td>
+      <td>{{row.remotePort}}</td>
+    </tr>
+    <tr ng-if="ctrl.records.length === 0 && !ctrl.loading" class="no-records">
+      <td colspan="4" i18n="No Records"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>

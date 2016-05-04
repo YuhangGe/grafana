@@ -34,6 +34,14 @@ function (angular, _, config) {
       row.collapse = row.collapse ? false : true;
     };
 
+    $scope.marginCls = function ($index, total) {
+      if (total <= 1) {
+        return '';
+      }
+      var cls = $index === 0 ? 'm-right' : ($index === total - 1 ? 'm-left' : 'm-both');
+      return (total === 2 ? 'm-half ' : '') + cls;
+    };
+
     $scope.addPanel = function(panel) {
       $scope.dashboard.addPanel(panel, $scope.row);
     };

@@ -65,17 +65,22 @@
 
 .row-open {
   margin-top: 5px;
-  left: -23px;
+  left: -30px;
   position: absolute;
   z-index: 100;
   transition: .10s left;
   transition-delay: .10s;
 
   &:hover {
+    left: -7px;
+  }
+}
+
+.sidemenu-pinned .row-open {
+  left: -23px;
+  &:hover {
     left: 0;
   }
-
-
 }
 
 .row-control-inner {
@@ -117,12 +122,36 @@ div.flot-text {
   float: left;
   vertical-align: top;
   position: relative;
+
+  &.m-left .panel-margin {
+    margin-left: 0.53333333rem;
+  }
+  &.m-right .panel-margin {
+    margin-right: 0.53333333rem;
+  }
+  &.m-both .panel-margin {
+    margin-left: 0.26666667rem;
+    margin-right: 0.26666667rem;
+  }
+  &.m-half.m-left .panel-margin {
+    margin-left: 0.4rem;
+  }
+  &.m-half.m-right .panel-margin {
+    margin-right: 0.4rem;
+  }
+
 }
 
 .panel-margin {
-  margin: 0 0.4rem 0.8rem 0.4rem;
+  //margin: 0 0.4rem 0.8rem 0.4rem;
   display: block;
 }
+
+
+.grafana-row-margin .panel .panel-margin {
+  margin-bottom: 0.8rem;
+}
+
 
 .panel-container {
   background-color: $panel-bg;

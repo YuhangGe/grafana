@@ -7,10 +7,15 @@ import coreModule from '../../core_module';
 
 export class NavbarCtrl {
   user: any;
-  
+
   /** @ngInject */
-  constructor(private $scope, private contextSrv) {
+  constructor(private $rootScope, private $scope, private contextSrv) {
     this.user = contextSrv.user;
+  }
+
+  toggleSideMenu() {
+    this.contextSrv.toggleSideMenu();
+    this.$rootScope.$broadcast('sidebar-pinned');
   }
 }
 

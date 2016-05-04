@@ -16,7 +16,7 @@
       "height": "250px",
       "panels": [
         {
-          "editable": false,
+          "editable": true,
           "error": false,
           "id": 1,
           "isNew": true,
