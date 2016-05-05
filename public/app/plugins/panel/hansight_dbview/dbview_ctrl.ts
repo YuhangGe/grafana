@@ -7,7 +7,8 @@ export default class DBViewCtrl extends PanelCtrl {
   datasourceSrv: any;
   datasource: any;
   records: any;
-  
+  loading: boolean;
+
   /** @ngInject */
   constructor($scope, $injector) {
     super($scope, $injector);
@@ -15,7 +16,33 @@ export default class DBViewCtrl extends PanelCtrl {
     this.datasourceSrv = $injector.get('datasourceSrv');
     this.datasource = null;
     this.records = [];
+    this.loading = true;
+    this.request();
   }
 
-  
+  request() {
+    this.loading = true;
+    if (!this.datasource) {
+      this.datasourceSrv.get('HanSight').then(ds => {
+        this.datasource = ds;
+        this._request()
+      }, err => {
+        console.log(err);
+        this.loading = false;
+      });
+    } else {
+      this._request();
+    }
+  }
+
+  _request() {
+    this.datasource
+      ._request('POST', '/view')
+      .then(res => {
+        this.records = res;
+      }).finally(() => {
+      this.loading = false;
+    });
+  }
+
 }

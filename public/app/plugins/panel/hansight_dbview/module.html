@@ -2,9 +2,41 @@
   <div class="page-header">
      <h1>字段展现</h1>
   </div>
+  <div class="row">
+    <div class="col-md-4 gf-form">
+      <label class="gf-form-label width-6" i18n="Start Time"></label>
+      <input ng-model="ctrl.timeRange.start" type="text" class="gf-form-input">
+    </div>
+    <div class="col-md-4 gf-form">
+      <label class="gf-form-label width-6" i18n="End Time"></label>
+      <input ng-model="ctrl.timeRange.end" type="text" class="gf-form-input">
+    </div>
+    <div class="col-md-4 gf-form">
+      <label class="gf-form-label width-6" i18n="Local IP"></label>
+      <input ng-model="ctrl.fourTuple.localIP" type="text" class="gf-form-input">
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Local Port"></label>
+      <input ng-model="ctrl.fourTuple.localPort" type="text" class="gf-form-input">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Remote IP"></label>
+      <input ng-model="ctrl.fourTuple.remoteIP" type="text" class="gf-form-input">
+    </div>
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Remote Port"></label>
+      <input ng-model="ctrl.fourTuple.remotePort" type="text" class="gf-form-input">
+    </div>
+  </div>
   <table class="filter-table form-inline">
     <thead>
     <tr>
+      <th i18n="Timestamp"></th>
       <th i18n="Local IP"></th>
       <th i18n="Local Port"></th>
       <th i18n="Remote IP"></th>
@@ -13,6 +45,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="row in ctrl.records">
+      <td>{{row.timestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
       <td>{{row.localIP}}</td>
       <td>{{row.localPort}}</td>
       <td>{{row.remoteIP}}</td>
