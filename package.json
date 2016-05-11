@@ -1,6 +1,6 @@
 {
   "name": "grafana-hansight",
-  "version": "3.0.0-beta7",
+  "version": "3.0.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/YuhangGe/grafana.git"
