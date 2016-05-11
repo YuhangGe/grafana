@@ -4,21 +4,31 @@
   <div class="row">
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="Local IP"></label>
-      <input ng-model="ctrl.fourTuple.localIP" type="text" class="gf-form-input">
+      <input ng-model="ctrl.query.localIP" type="text" class="gf-form-input">
     </div>
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="Local Port"></label>
-      <input ng-model="ctrl.fourTuple.localPort" type="text" class="gf-form-input">
+      <input ng-model="ctrl.query.localPort" type="text" class="gf-form-input">
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="Remote IP"></label>
-      <input ng-model="ctrl.fourTuple.remoteIP" type="text" class="gf-form-input">
+      <input ng-model="ctrl.query.remoteIP" type="text" class="gf-form-input">
     </div>
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="Remote Port"></label>
-      <input ng-model="ctrl.fourTuple.remotePort" type="text" class="gf-form-input">
+      <input ng-model="ctrl.query.remotePort" type="text" class="gf-form-input">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="Start Time"></label>
+      <input placeholder="2016-06-04 23">
+    </div>
+    <div class="col-sm-6 gf-form">
+      <label class="gf-form-label width-6" i18n="End Time"></label>
+      <input datepicker-popup="yyyy-MM-dd" datepicker-popup-template-url="app/partials/datepicker_popup.html" datepicker-options="{showWeeks: false}" ng-model="ctrl.query.endTime" show-button-bar="false" on-open-focus="false" is-open="ctrl._pop2" ng-focus="ctrl._pop2 = true" class="gf-form-input">
     </div>
   </div>
   <div class="row">

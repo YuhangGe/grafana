@@ -11,8 +11,17 @@ window.__bootGrafana = function () {
   if (window.__DEBUG) {
     System.cacheBust = '?bust=' + Date.now();
   }
-  System.import('app/core/i18n').then(function (i18n) {
+  Promise.all([
+    System.import('app/core/i18n'),
+    System.import('angular')
+  ]).then(function (mArr) {
+    var i18n = mArr[0];
+    var angular = mArr[1];
     i18n.registerJson(window.__bootGrafanaLocalJson);
+    angular.module("ngLocale", [], ["$provide", function($provide) {
+      $provide.value('$locale', window.__bootGrafanaNgLocale);
+      delete window.__bootGrafanaNgLocale;
+    }]);
     delete window.__bootGrafanaLocalJson;
     return System.import('app/app');
   }).then(function(app) {

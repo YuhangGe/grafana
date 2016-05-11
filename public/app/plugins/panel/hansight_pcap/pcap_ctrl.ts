@@ -4,28 +4,36 @@ import i18n from 'app/core/i18n';
 export default class PcapCtrl extends PanelCtrl {
   static templateUrl = `public/app/plugins/panel/hansight_pcap/module.html`;
 
-  fourTuple: {
+  query: {
     localIP: string,
     localPort: string,
     remoteIP: string,
-    remotePort: string
+    remotePort: string,
+    startTime: any,
+    endTime: any
   };
 
   datasourceSrv: any;
   datasource: any;
   backendSrv: any;
   _submitting: boolean;
+  _pop1: boolean;
+  _pop2: boolean;
 
   /** @ngInject */
   constructor($scope, $injector) {
     super($scope, $injector);
-    this.fourTuple = {
+    this.query = {
       localIP: '',
       localPort: '',
       remoteIP: '',
-      remotePort: ''
+      remotePort: '',
+      startTime: new Date(),
+      endTime: new Date()
     };
     this._submitting = false;
+    this._pop1 = false;
+    this._pop2 = false;
     this.backendSrv = $injector.get('backendSrv');
     this.datasourceSrv = $injector.get('datasourceSrv');
     this.datasource = null;
@@ -61,11 +69,16 @@ export default class PcapCtrl extends PanelCtrl {
 
   _request() {
     this.datasource
-      .queryPcapDownloadUrl(this.fourTuple)
+      .queryPcapDownloadUrl(this.query)
       .then(res => {
         location.href = res.url;
       }).finally(() => {
       this._submitting = false;
     });
+  }
+
+  open() {
+    console.log('fo');
+    this._pop2 = true;
   }
 }

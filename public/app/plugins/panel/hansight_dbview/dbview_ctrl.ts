@@ -7,15 +7,19 @@ export default class DBViewCtrl extends PanelCtrl {
   datasourceSrv: any;
   datasource: any;
   records: any;
+  props: any;
   loading: boolean;
+  $filter: any;
 
   /** @ngInject */
   constructor($scope, $injector) {
     super($scope, $injector);
     this.backendSrv = $injector.get('backendSrv');
     this.datasourceSrv = $injector.get('datasourceSrv');
+    this.$filter = $injector.get('$filter');
     this.datasource = null;
     this.records = [];
+    this.props = [];
     this.loading = true;
     this.request();
   }
@@ -39,7 +43,11 @@ export default class DBViewCtrl extends PanelCtrl {
     this.datasource
       ._request('POST', '/view')
       .then(res => {
-        this.records = res;
+        this.records = res.map(record => {
+          record.timestamp = this.$filter('date')(record.timestamp, 'yyyy-MM-dd HH:mm');
+          return record;
+        });
+        this.props = res.length > 0 ? Object.keys(res[0]) : [];
       }).finally(() => {
       this.loading = false;
     });

@@ -33,6 +33,19 @@ window.__bootGrafanaError = function(err) {
     });
   }
 
+  function loadScript(url) {
+    return new Promise(function (resolve, reject) {
+      var $script = document.createElement('script');
+      var $head = document.getElementsByTagName('head')[0];
+      $script.onload = function () {
+        $head.removeChild($script);
+        resolve();
+      };
+      $script.src = url;
+      $head.appendChild($script);
+      $script.onerror = reject;
+    });
+  }
   function loadTheme(theme) {
     return new Promise(function (resolve, reject) {
       var $style = document.createElement('link');
@@ -59,9 +72,12 @@ window.__bootGrafanaError = function(err) {
       settings: bootData.Settings,
       mainNavLinks: bootData.MainNavLinks
     };
+    var _locale = bootData.User.language || navigator.language || 'zh-CN';
+    console.log(_locale)
     Promise.all([
-      getJson('/locals/' + (bootData.User.language || navigator.language || 'zh-CN') + '.json'),
-      loadTheme(bootData.User.lightTheme ? 'light' : 'dark')
+      getJson('/locals/' + _locale + '.json'),
+      loadTheme(bootData.User.lightTheme ? 'light' : 'dark'),
+      loadScript('/locals/angular_locale_' +  _locale + '.js')
     ]).then(function (ds) {
       window.__bootGrafanaLocalJson = ds[0];
       if (window.__bootGrafana) {

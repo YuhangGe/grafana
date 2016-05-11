@@ -1,3 +1,10 @@
+// System.registerDynamic('jquery', [], false, function(require, exports, module) {
+//   module.exports = window.angular;
+// });
+// System.registerDynamic('angular', [], false, function(require, exports, module) {
+//   module.exports = window.angular;
+// });
+
 System.config({
   defaultJSExtenions: true,
   baseURL: '',

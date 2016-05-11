@@ -103,7 +103,7 @@ module.exports = function (app, server, port) {
       return;
     }
     let port = 3000; // default is grafana server
-    let ip = 'http://127.0.0.1';
+    let ip = 'http://ued.hansight.com'; //
     if (/^\/prometheus\//.test(this.url)) {
       this.url = this.url.replace(/^\/prometheus\//, '/');
       // ip = 'http://192.168.1.101';
