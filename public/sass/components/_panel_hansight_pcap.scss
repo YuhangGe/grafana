@@ -1,20 +1,20 @@
 .hansight-pcap-content, .hansight-dbview-content {
   padding: 2rem 4rem;
   min-height: calc(100vh - 52px - 2.8rem);
-
-  h1 {
-    //margin-bottom: 30px;
-  }
   .row {
     margin-bottom: 10px;
   }
-  .btn {
-    margin-top: 5px;
-  }
+
 }
 
 .hansight-pcap-content {
+  h1 {
+    margin-bottom: 30px;
+  }
   .row {
     max-width: 600px;
+  }
+  .btn {
+    margin-top: 15px;
   }
 }

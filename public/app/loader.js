@@ -72,8 +72,7 @@ window.__bootGrafanaError = function(err) {
       settings: bootData.Settings,
       mainNavLinks: bootData.MainNavLinks
     };
-    var _locale = bootData.User.language || navigator.language || 'zh-CN';
-    console.log(_locale)
+    var _locale = bootData.User.language || 'zh-cn';
     Promise.all([
       getJson('/locals/' + _locale + '.json'),
       loadTheme(bootData.User.lightTheme ? 'light' : 'dark'),

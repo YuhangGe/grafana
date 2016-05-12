@@ -104,17 +104,17 @@
   "Remove": "移除",
   "Are you sure you want to remove this panel?": "你确定要移除该面板?",
 
-  "PCAP Download": "下载 PCAP 包",
-  "pcap.download.tip": "使用 IP 四元组条件下载 PCAP 包",
   "Local IP": "源 IP",
   "Local Port": "源端口",
   "Remote IP": "目的 IP",
   "Remote Port": "目的端口",
   "No Records": "暂无数据",
   "Timestamp": "时间",
+  "Start Time": "开始时间",
+  "End Time": "结束时间",
 
   "HTTP Monitor": "HTTP 监控",
   "TCP Monitor": "TCP 监控",
-  "Socks Search": "Socks 查询",
-  "Socks View": "Socks 展现"
+  "PCAP Download": "下载 PCAP 包",
+  "Socks View": "字段展现"
 }

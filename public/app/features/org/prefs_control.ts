@@ -22,7 +22,7 @@ export class PrefsControlCtrl {
   ];
   languages: any = [
     {value: '', text: 'Default'},
-    {value: 'zh-CN', text: '简体中文'},
+    {value: 'zh-cn', text: '简体中文'},
     {value: 'en', text: 'Engilish'}
   ];
 

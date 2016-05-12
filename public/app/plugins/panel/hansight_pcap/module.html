@@ -24,11 +24,17 @@
   <div class="row">
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="Start Time"></label>
-      <input placeholder="2016-06-04 23">
+      <input datepicker-popup="yyyy-MM-dd" datepicker-popup-template-url="app/partials/datepicker_popup.html" datepicker-options="{showWeeks: false}" ng-model="ctrl.query.startDate" show-button-bar="false" on-open-focus="false" is-open="ctrl._pop1" ng-focus="ctrl._pop1 = true" class="gf-form-input">
+      <select ng-model="ctrl.query.startHour">
+        <option ng-repeat="hour in ctrl.HOURS" value="{{hour}}">{{hour}}:00</option>
+      </select>
     </div>
     <div class="col-sm-6 gf-form">
       <label class="gf-form-label width-6" i18n="End Time"></label>
-      <input datepicker-popup="yyyy-MM-dd" datepicker-popup-template-url="app/partials/datepicker_popup.html" datepicker-options="{showWeeks: false}" ng-model="ctrl.query.endTime" show-button-bar="false" on-open-focus="false" is-open="ctrl._pop2" ng-focus="ctrl._pop2 = true" class="gf-form-input">
+      <input datepicker-popup="yyyy-MM-dd" datepicker-popup-template-url="app/partials/datepicker_popup.html" datepicker-options="{showWeeks: false}" ng-model="ctrl.query.endDate" show-button-bar="false" on-open-focus="false" is-open="ctrl._pop2" ng-focus="ctrl._pop2 = true" class="gf-form-input">
+      <select ng-model="ctrl.query.endHour">
+        <option ng-repeat="hour in ctrl.HOURS" value="{{hour}}">{{hour}}:00</option>
+      </select>
     </div>
   </div>
   <div class="row">

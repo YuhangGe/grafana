@@ -1,16 +1,21 @@
 import { PanelCtrl } from 'app/plugins/sdk';
 import i18n from 'app/core/i18n';
+import _ from 'lodash';
 
 export default class PcapCtrl extends PanelCtrl {
   static templateUrl = `public/app/plugins/panel/hansight_pcap/module.html`;
+  static HOURS = _.range(1, 25);
 
+  HOURS: any;
   query: {
     localIP: string,
     localPort: string,
     remoteIP: string,
     remotePort: string,
-    startTime: any,
-    endTime: any
+    startDate: any,
+    endDate: any,
+    startHour: string,
+    endHour: string
   };
 
   datasourceSrv: any;
@@ -23,14 +28,18 @@ export default class PcapCtrl extends PanelCtrl {
   /** @ngInject */
   constructor($scope, $injector) {
     super($scope, $injector);
+    var td = new Date();
     this.query = {
       localIP: '',
       localPort: '',
       remoteIP: '',
       remotePort: '',
-      startTime: new Date(),
-      endTime: new Date()
+      startDate: td,
+      endDate: td,
+      startHour: (td.getHours() - 1).toString(),
+      endHour: td.getHours().toString()
     };
+    this.HOURS = PcapCtrl.HOURS;
     this._submitting = false;
     this._pop1 = false;
     this._pop2 = false;

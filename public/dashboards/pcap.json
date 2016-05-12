@@ -2,7 +2,7 @@
   "id": 2,
   "title": "PCAP Download",
   "originalTitle": "PCAP Download",
-  "icon": "fa fa-fw fa-search",
+  "icon": "fa fa-fw fa-download",
   "tags": [],
   "style": "dark",
   "timezone": "browser",
